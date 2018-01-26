@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.square.data.models.commitmodel.RepoData;
 import com.example.square.data.models.repomodel.Repo;
 import com.example.square.di.components.DaggerSquareComponent;
 import com.example.square.di.components.SquareComponent;
@@ -31,9 +32,7 @@ import io.reactivex.schedulers.Schedulers;
 
 public class MainFragment extends Fragment {
     private final static String TAG = MainActivity.class.getSimpleName();
-    private List<String> list = new ArrayList<>();
-    private TextView tv;
-    private Picasso picasso;
+    private List<RepoData> list = new ArrayList<>();
     private GithubApi githubApi;
     private CompositeDisposable mCompositeDisposable;
     private Callbacks mCallbacks;
@@ -74,7 +73,6 @@ public class MainFragment extends Fragment {
         SquareComponent component = DaggerSquareComponent.builder()
                 .contextModule(new ContextModule(getContext()))
                 .build();
-        picasso = component.getPicasso();
         githubApi = component.getGithubService();
 
         mCompositeDisposable = new CompositeDisposable();
@@ -85,7 +83,11 @@ public class MainFragment extends Fragment {
 //                        .map(data -> ())
                         .subscribe(data -> {
                             for (Repo repo:data) {
-                                list.add(repo.getUrl());
+                                RepoData repoData = new RepoData();
+                                repoData.setForks(repo.getForksCount());
+                                repoData.setStars(repo.getStargazersCount()); //проверить
+                                repoData.setName(repo.getName());
+                                list.add(repoData);
                             }
                             setupAdapter();
                         })

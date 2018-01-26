@@ -4,8 +4,10 @@ import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 
 public class MainActivity extends SingleFragmentActivity implements MainFragment.Callbacks{
+
     private final static String TAG = MainActivity.class.getSimpleName();
 
     @Override
@@ -20,6 +22,8 @@ public class MainActivity extends SingleFragmentActivity implements MainFragment
 
     @Override
     public void onRepoSelected(String repoId) {
+        Log.d(TAG, repoId);
+
         if (findViewById(R.id.detailFragmentContainer) == null) {
             Intent i = new Intent(this, RepoActivity.class);
             i.putExtra(RepoFragment.REPO_ID, repoId);

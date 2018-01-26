@@ -13,15 +13,16 @@ import android.widget.TextView;
 
 import com.example.square.MainFragment;
 import com.example.square.R;
+import com.example.square.data.models.commitmodel.RepoData;
 
 import java.util.List;
 
 public class Adapter extends RecyclerView.Adapter<Adapter.Holder> {
     private Context mContext;
-    private List<String> data;
+    private List<RepoData> data;
     private MainFragment.Callbacks mCallbacks;
 
-    public Adapter(Context context, List<String> list, MainFragment.Callbacks callbacks) {
+    public Adapter(Context context, List<RepoData> list, MainFragment.Callbacks callbacks) {
         mContext = context;
         data = list;
         mCallbacks = callbacks;
@@ -39,8 +40,10 @@ public class Adapter extends RecyclerView.Adapter<Adapter.Holder> {
     public void onBindViewHolder(Holder holder, final int position) {
         if (data == null || data.size() == 0)
             return;
-        holder.textView.setText(data.get(position));
-        holder.itemView.setOnClickListener(v -> mCallbacks.onRepoSelected(data.get(position)));
+        holder.name.setText(data.get(position).getName());
+        holder.stars.setText(data.get(position).getStars().toString());
+        holder.forks.setText(data.get(position).getForks().toString());
+//        holder.itemView.setOnClickListener(v -> mCallbacks.onRepoSelected(data.get(position)));
     }
 
     @Override
@@ -49,11 +52,15 @@ public class Adapter extends RecyclerView.Adapter<Adapter.Holder> {
     }
 
     class Holder extends RecyclerView.ViewHolder{
-        private TextView textView;
+        private TextView name;
+        private TextView stars;
+        private TextView forks;
 
         public Holder(View itemView) {
             super(itemView);
-            textView = (TextView) itemView.findViewById(R.id.result);
+            name = (TextView) itemView.findViewById(R.id.name);
+            stars = (TextView) itemView.findViewById(R.id.starsCount);
+            forks = (TextView) itemView.findViewById(R.id.forksCount);
         }
     }
 }
