@@ -6,6 +6,4 @@
     android:layout_height="match_parent"
     tools:context="com.example.square.MainActivity">
 
-    <include layout="@layout/custom_recycler"/>
-
 </android.support.constraint.ConstraintLayout>

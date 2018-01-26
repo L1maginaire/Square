@@ -1,13 +1,10 @@
 package com.example.square;
 
-import android.app.ActionBar;
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,6 +36,7 @@ public class MainFragment extends Fragment {
     private Picasso picasso;
     private GithubApi githubApi;
     private CompositeDisposable mCompositeDisposable;
+    private Callbacks mCallbacks;
 
     private Adapter mAdapter;
     private RecyclerView recyclerView;
@@ -51,13 +49,13 @@ public class MainFragment extends Fragment {
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-//        mCallbacks = (Callbacks)activity;
+        mCallbacks = (Callbacks)activity;
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
-//        mCallbacks = null;
+        mCallbacks = null;
     }
 
     @Override
@@ -68,9 +66,8 @@ public class MainFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.activity_main, parent, false);
+        View v = inflater.inflate(R.layout.custom_recycler, parent, false);
         list = new ArrayList<>();
-
         recyclerView = (RecyclerView) v.findViewById(R.id.custom_recycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext())); // todo: dagger?
 
@@ -97,7 +94,7 @@ public class MainFragment extends Fragment {
     }
 
     private void setupAdapter() {
-        mAdapter = new Adapter(getContext(), list);
+        mAdapter = new Adapter(getContext(), list, mCallbacks);
         recyclerView.setAdapter(mAdapter);
     }
 }

@@ -19,11 +19,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".RepoActivity"
-            android:parentActivityName=".MainActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+            android:name=".RepoActivity">
         </activity>
     </application>
 </manifest>

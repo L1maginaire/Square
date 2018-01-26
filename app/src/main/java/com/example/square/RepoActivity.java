@@ -1,5 +1,6 @@
 package com.example.square;
 
+import android.support.v4.app.Fragment;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -17,33 +18,21 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
 
-public class RepoActivity extends AppCompatActivity {
-    TextView textView;
-    private GithubApi githubApi;
-    private CompositeDisposable mCompositeDisposable;
+public class RepoActivity extends SingleFragmentActivity {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected Fragment createFragment() {
+        return RepoFragment.newInstance();
+    }
+
+    /*@Override
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
-        textView = findViewById(R.id.tvtest);
         ActionBar actionBar = this.getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
-        SquareComponent component = DaggerSquareComponent.builder()
-                .contextModule(new ContextModule(this))
-                .build();
-        githubApi = component.getGithubService();
-        mCompositeDisposable = new CompositeDisposable();
-        mCompositeDisposable.add(githubApi.getSquareRepos()
-                        .subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe(data -> {
-                            String t = data.get(0).getArchiveUrl();
-                            textView.setText(t);
-                        })
-        );
     }
 
     @Override
@@ -53,5 +42,5 @@ public class RepoActivity extends AppCompatActivity {
             NavUtils.navigateUpFromSameTask(this);
         }
         return super.onOptionsItemSelected(item);
-    }
+    }*/
 }

@@ -22,7 +22,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
 
-public class MainActivity extends SingleFragmentActivity implements RepoFragment.Callbacks {
+public class MainActivity extends SingleFragmentActivity implements MainFragment.Callbacks/*, RepoFragment.Callbacks */{
     private final static String TAG = MainActivity.class.getSimpleName();
     private List<Repo> list = new ArrayList<>();
     private TextView tv;

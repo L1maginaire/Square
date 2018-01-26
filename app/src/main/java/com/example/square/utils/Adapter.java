@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.square.MainFragment;
 import com.example.square.R;
 import com.example.square.RepoActivity;
 
@@ -21,10 +22,12 @@ import java.util.List;
 public class Adapter extends RecyclerView.Adapter<Adapter.Holder> {
     private Context mContext;
     private List<String> data;
+    private MainFragment.Callbacks mCallbacks;
 
-    public Adapter(Context context, List<String> list) {
+    public Adapter(Context context, List<String> list, MainFragment.Callbacks callbacks) {
         mContext = context;
         data = list;
+        mCallbacks = callbacks;
     }
 
     @Override
@@ -60,7 +63,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.Holder> {
 
         @Override
         public void onClick(View v) {
-            mContext.startActivity(new Intent(mContext, RepoActivity.class));
+            mCallbacks.onRepoSelected();
         }
     }
 }
