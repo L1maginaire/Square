@@ -1,28 +1,14 @@
 package com.example.square;
 
 import android.support.v4.app.Fragment;
-import android.support.v4.app.NavUtils;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.MenuItem;
-import android.widget.TextView;
-
-import com.example.square.di.components.DaggerSquareComponent;
-import com.example.square.di.components.SquareComponent;
-import com.example.square.di.modules.ContextModule;
-import com.example.square.utils.GithubApi;
-
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.schedulers.Schedulers;
+import static com.example.square.RepoFragment.REPO_ID;
 
 public class RepoActivity extends SingleFragmentActivity {
 
     @Override
     protected Fragment createFragment() {
-        return RepoFragment.newInstance();
+        String id = getIntent().getStringExtra(REPO_ID);
+        return RepoFragment.newInstance(id);
     }
 
     /*@Override

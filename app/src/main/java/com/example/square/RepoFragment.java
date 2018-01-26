@@ -23,32 +23,16 @@ import io.reactivex.schedulers.Schedulers;
  */
 
 public class RepoFragment extends Fragment {
-//    private Callbacks mCallbacks;
+    public static final String REPO_ID = "repo_id";
     private GithubApi githubApi;
     private CompositeDisposable mCompositeDisposable;
     private TextView tv;
-/*
-    public interface Callbacks {
-        void onRepoSelected();
-    }
 
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        mCallbacks = (Callbacks) activity;
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mCallbacks = null;
-    }*/
-
-    public static RepoFragment newInstance() {
-//        Bundle args = new Bundle();
-//        args.putSerializable(EXTRA_CRIME_ID, crimeId);
+    public static RepoFragment newInstance(String id) {
+        Bundle args = new Bundle();
+        args.putSerializable(REPO_ID, id);
         RepoFragment fragment = new RepoFragment();
-//        fragment.setArguments(args);
+        fragment.setArguments(args);
         return fragment;
     }
 
@@ -57,19 +41,7 @@ public class RepoFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.activity_main2, container, false);
         tv = v.findViewById(R.id.tvtest);
-        SquareComponent component = DaggerSquareComponent.builder()
-                .contextModule(new ContextModule(getContext()))
-                .build();
-        githubApi = component.getGithubService();
-        mCompositeDisposable = new CompositeDisposable();
-        mCompositeDisposable.add(githubApi.getSquareRepos()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(data -> {
-                    String t = data.get(0).getArchiveUrl();
-                    tv.setText(t);
-                })
-        );
+        tv.setText(getArguments().getString(REPO_ID));
         return v;
     }
 }

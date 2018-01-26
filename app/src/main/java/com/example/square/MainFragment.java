@@ -43,7 +43,7 @@ public class MainFragment extends Fragment {
 
 
     public interface Callbacks {
-        void onRepoSelected();
+        void onRepoSelected(String repoId);
     }
 
     @Override
