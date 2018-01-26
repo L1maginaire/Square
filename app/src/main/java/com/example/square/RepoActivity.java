@@ -17,7 +17,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
 
-public class Main2Activity extends AppCompatActivity {
+public class RepoActivity extends AppCompatActivity {
     TextView textView;
     private GithubApi githubApi;
     private CompositeDisposable mCompositeDisposable;

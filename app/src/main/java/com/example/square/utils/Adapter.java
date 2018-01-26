@@ -1,11 +1,8 @@
-/*
 package com.example.square.utils;
 
-*/
-/**
+/*
  * Created by l1maginaire on 1/25/18.
- *//*
-
+*/
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -17,17 +14,15 @@ import android.widget.TextView;
 
 import com.example.square.R;
 
-*/
-/**
- * Created by l1maginaire on 12/28/17.
- *//*
-
+import java.util.List;
 
 public class Adapter extends RecyclerView.Adapter<Adapter.Holder> {
     private Context mContext;
+    private List<String> data;
 
-    public Adapter(Context context) {
+    public Adapter(Context context, List<String> list) {
         mContext = context;
+        data = list;
     }
 
     @Override
@@ -40,19 +35,14 @@ public class Adapter extends RecyclerView.Adapter<Adapter.Holder> {
 
     @Override
     public void onBindViewHolder(Holder holder, final int position) {
-        if (list == null || list.size() == 0)
+        if (data == null || data.size() == 0)
             return;
-        float val = (float) list.get(position).getValue();
-        int res = (int) list.get(position).getPic();
-        String tag = (String) list.get(position).getTag();
-        holder.textView.setText(String.valueOf(val));
-        holder.mImageView.setImageResource(res);
-        holder.mImageView.setTag(tag);
+        holder.textView.setText(data.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return list.size();
+        return data.size();
     }
 
     class Holder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -70,4 +60,4 @@ public class Adapter extends RecyclerView.Adapter<Adapter.Holder> {
         public void onClick(View v) {
         }
     }
-}*/
+}

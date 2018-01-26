@@ -4,11 +4,14 @@ package com.example.square;
  * Created by l1maginaire on 1/26/18.
  */
 
+import android.app.ActionBar;
 import android.os.Bundle;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.NavUtils;
+import android.view.MenuItem;
 
 public abstract class SingleFragmentActivity extends FragmentActivity {
     protected abstract Fragment createFragment();
