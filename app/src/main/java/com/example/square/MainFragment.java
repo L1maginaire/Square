@@ -42,7 +42,7 @@ public class MainFragment extends Fragment {
 
 
     public interface Callbacks {
-        void onRepoSelected(String repoId);
+        void onRepoSelected(String title, String description);
     }
 
     @Override
@@ -87,6 +87,7 @@ public class MainFragment extends Fragment {
                                 repoData.setForks(repo.getForksCount());
                                 repoData.setStars(repo.getStargazersCount()); //проверить
                                 repoData.setName(repo.getName());
+                                repoData.setDescription(repo.getDescription());
                                 list.add(repoData);
                             }
                             setupAdapter();

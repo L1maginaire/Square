@@ -15,8 +15,8 @@
         app:layout_constraintTop_toBottomOf="parent"/>
 
     <TextView
-        android:id="@+id/description"
-        android:textSize="30dp"
+        android:id="@+id/repoDescription"
+        android:textSize="15dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/repoTitle"/>
@@ -26,7 +26,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Commits"
-        app:layout_constraintTop_toBottomOf="@id/description"/>
+        app:layout_constraintTop_toBottomOf="@id/repoDescription"/>
 
     <Button
         android:id="@+id/contributors"

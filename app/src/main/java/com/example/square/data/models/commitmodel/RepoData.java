@@ -1,11 +1,14 @@
 package com.example.square.data.models.commitmodel;
 
+import java.io.Serializable;
+
 /**
  * Created by l1maginaire on 1/26/18.
  */
 
-public class RepoData {
+public class RepoData{
     private String name;
+    private String description;
     private Integer forks;
     private Integer stars;
 
@@ -31,5 +34,13 @@ public class RepoData {
 
     public void setStars(Integer stars) {
         this.stars = stars;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

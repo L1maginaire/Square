@@ -1,6 +1,8 @@
 package com.example.square;
 
 import android.support.v4.app.Fragment;
+
+import static com.example.square.RepoFragment.REPO_DESCRIPTION;
 import static com.example.square.RepoFragment.REPO_ID;
 
 public class RepoActivity extends SingleFragmentActivity {
@@ -8,7 +10,8 @@ public class RepoActivity extends SingleFragmentActivity {
     @Override
     protected Fragment createFragment() {
         String id = getIntent().getStringExtra(REPO_ID);
-        return RepoFragment.newInstance(id);
+        String description = getIntent().getStringExtra(REPO_DESCRIPTION);
+        return RepoFragment.newInstance(id, description);
     }
 
     /*@Override

@@ -14,11 +14,14 @@ import android.widget.TextView;
 
 public class RepoFragment extends Fragment {
     public static final String REPO_ID = "repo_id";
-    private TextView tv;
+    public static final String REPO_DESCRIPTION = "repo_description";
+    private TextView title;
+    private TextView description;
 
-    public static RepoFragment newInstance(String id) {
+    public static RepoFragment newInstance(String title, String description) {
         Bundle args = new Bundle();
-        args.putSerializable(REPO_ID, id);
+        args.putSerializable(REPO_ID, title);
+        args.putSerializable(REPO_DESCRIPTION, description);
         RepoFragment fragment = new RepoFragment();
         fragment.setArguments(args);
         return fragment;
@@ -28,8 +31,10 @@ public class RepoFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_single_repo, container, false);
-        tv = v.findViewById(R.id.repoTitle);
-        tv.setText(getArguments().getString(REPO_ID));
+        title = v.findViewById(R.id.repoTitle);
+        description = v.findViewById(R.id.repoDescription);
+        title.setText(getArguments().getString(REPO_ID));
+        description.setText(getArguments().getString(REPO_DESCRIPTION));
         return v;
     }
 }
