@@ -1,58 +1,57 @@
 package com.example.square;
 
-import android.content.Intent;
+import android.support.v4.app.NavUtils;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
+import android.view.MenuItem;
 import android.widget.TextView;
 
-import com.example.square.data.models.repomodel.Repo;
 import com.example.square.di.components.DaggerSquareComponent;
 import com.example.square.di.components.SquareComponent;
 import com.example.square.di.modules.ContextModule;
 import com.example.square.utils.GithubApi;
-import com.squareup.picasso.Picasso;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
 
-public class MainActivity extends AppCompatActivity {
-    private final static String TAG = MainActivity.class.getSimpleName();
-    private List<Repo> list = new ArrayList<>();
-    private TextView tv;
-    private Picasso picasso;
+public class Main2Activity extends AppCompatActivity {
+    TextView textView;
     private GithubApi githubApi;
     private CompositeDisposable mCompositeDisposable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        tv = findViewById(R.id.lol);
-        tv.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, Main2Activity.class)));
-
+        setContentView(R.layout.activity_main2);
+        textView = findViewById(R.id.tvtest);
+        ActionBar actionBar = this.getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
         SquareComponent component = DaggerSquareComponent.builder()
                 .contextModule(new ContextModule(this))
                 .build();
-        picasso = component.getPicasso();
         githubApi = component.getGithubService();
-
         mCompositeDisposable = new CompositeDisposable();
-
         mCompositeDisposable.add(githubApi.getSquareRepos()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-//                .map(data -> ())
-                .subscribe(data -> {
-                    String t = data.get(0).getArchiveUrl();
-                    Log.d(TAG, t.toString());
-                    tv.setText(t);
-                })
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(data -> {
+                            String t = data.get(0).getArchiveUrl();
+                            textView.setText(t);
+                        })
         );
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == android.R.id.home) {
+            NavUtils.navigateUpFromSameTask(this);
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

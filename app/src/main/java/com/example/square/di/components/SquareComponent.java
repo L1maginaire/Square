@@ -14,7 +14,7 @@ import dagger.Component;
 
 @ApplicationScope
 @Component(modules = {MainModule.class, PicassoModule.class})
-public interface GithubComponent {
+public interface SquareComponent {
     GithubApi getGithubService();
     Picasso getPicasso();
 }

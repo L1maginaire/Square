@@ -22,7 +22,7 @@ import okhttp3.logging.HttpLoggingInterceptor;
 
 @Module(includes = ContextModule.class)
 public class OkHttpClientModule {
-    private static final String TAG_LOGGING = "logging";
+    private static final String TAG = OkHttpClientModule.class.getSimpleName();
 
     @Provides
     public OkHttpClient okHttpClient(Cache cache, HttpLoggingInterceptor httpLoggingInterceptor) {
@@ -51,12 +51,7 @@ public class OkHttpClientModule {
 
     @Provides
     public HttpLoggingInterceptor httpLoggingInterceptor() {
-        HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
-            @Override
-            public void log(String message) {
-                Log.d(TAG_LOGGING, message);
-            }
-        });
+        HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor(message -> Log.d(TAG, message));
         httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         return httpLoggingInterceptor;
     }
