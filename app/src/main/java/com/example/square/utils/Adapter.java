@@ -5,6 +5,7 @@ package com.example.square.utils;
 */
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.square.R;
+import com.example.square.RepoActivity;
 
 import java.util.List;
 
@@ -58,6 +60,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.Holder> {
 
         @Override
         public void onClick(View v) {
+            mContext.startActivity(new Intent(mContext, RepoActivity.class));
         }
     }
 }
