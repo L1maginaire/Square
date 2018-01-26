@@ -4,10 +4,35 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="5dp"
     tools:context="com.example.square.RepoActivity">
+
     <TextView
+        android:id="@+id/repoTitle"
+        android:textSize="40dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/tvtest"/>
+        app:layout_constraintTop_toBottomOf="parent"/>
+
+    <TextView
+        android:id="@+id/description"
+        android:textSize="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/repoTitle"/>
+
+    <Button
+        android:id="@+id/commits"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Commits"
+        app:layout_constraintTop_toBottomOf="@id/description"/>
+
+    <Button
+        android:id="@+id/contributors"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Commits"
+        app:layout_constraintTop_toBottomOf="@id/commits"/>
 
 </android.support.constraint.ConstraintLayout>

@@ -28,7 +28,7 @@ public class RepoFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_single_repo, container, false);
-        tv = v.findViewById(R.id.tvtest);
+        tv = v.findViewById(R.id.repoTitle);
         tv.setText(getArguments().getString(REPO_ID));
         return v;
     }

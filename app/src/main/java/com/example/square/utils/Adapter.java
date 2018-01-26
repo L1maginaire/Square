@@ -43,7 +43,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.Holder> {
         holder.name.setText(data.get(position).getName());
         holder.stars.setText(data.get(position).getStars().toString());
         holder.forks.setText(data.get(position).getForks().toString());
-//        holder.itemView.setOnClickListener(v -> mCallbacks.onRepoSelected(data.get(position)));
+        holder.itemView.setOnClickListener(v -> mCallbacks.onRepoSelected(data.get(position).getName()));
     }
 
     @Override
