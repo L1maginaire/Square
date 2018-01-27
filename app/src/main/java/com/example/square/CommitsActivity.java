@@ -14,7 +14,10 @@ import com.example.square.utils.CommitAdapter;
 import com.example.square.utils.EndlessScrollImplementation;
 import com.example.square.utils.GithubApi;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
@@ -29,6 +32,9 @@ public class CommitsActivity extends AppCompatActivity {
     private ArrayList<CommitData> commitList;
     private GithubApi mGithubApi;
     private int pageNumber = 1;
+    private final SimpleDateFormat dfFrom = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ss'Z'");
+    private final SimpleDateFormat dfTo = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
+    private Date date;
 
     @Override
     protected void onStop() {//todo: onpause?
@@ -77,15 +83,26 @@ public class CommitsActivity extends AppCompatActivity {
                                 CommitData commitData  = new CommitData();
                                 commitData.setAuthor(commit.getCommit().getAuthor().getName()); //todo to map
                                 commitData.setCommitter(commit.getCommit().getCommitter().getName());
-                                commitData.setDate(commit.getCommit().getAuthor().getDate());
+                                String ss = commit.getCommit().getAuthor().getDate();
+                                commitData.setDate(dateFormat(ss));
                                 commitData.setMessage(commit.getCommit().getMessage());
                                 commitData.setSha(commit.getSha());
                                 commitData.setUrl(commit.getCommit().getUrl());
                                 commitList.add(commitData);
                             }
-                            mCommitAdapter.notifyItemRangeInserted(30/*30ли?*/ * pageNumber++, commitList.size());
+                            mCommitAdapter.notifyItemRangeInserted(30 * pageNumber++, commitList.size());
                         })
         );
+    }
+
+    private String dateFormat(String dateString){
+        try {
+            date = dfFrom.parse(dateString);
+            dateString = dfTo.format(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return dateString;
     }
 
     @Override

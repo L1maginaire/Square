@@ -19,7 +19,7 @@ import java.util.List;
 public class CommitAdapter extends RecyclerView.Adapter<CommitAdapter.Holder> {
     private Context mContext;
     private List<CommitData> data;
-    private boolean hidden = true;
+    private boolean areHidden = true;
 
     public CommitAdapter (Context context, List<CommitData> list) {
         mContext = context;
@@ -39,19 +39,25 @@ public class CommitAdapter extends RecyclerView.Adapter<CommitAdapter.Holder> {
         if (data == null || data.size() == 0)
             return;
         holder.itemView.setOnClickListener(v -> {
-            if(hidden){
+            if(areHidden){
                 holder.url.setVisibility(View.VISIBLE);
                 holder.message.setVisibility(View.VISIBLE);
                 holder.committer.setVisibility(View.VISIBLE);
+                areHidden = false;
+            } else {
+                holder.url.setVisibility(View.GONE);
+                holder.message.setVisibility(View.GONE);
+                holder.committer.setVisibility(View.GONE);
+                areHidden = true;
             }
         });
 
-        holder.sha.setText(data.get(position).getSha());
-        holder.author.setText(data.get(position).getAuthor());
-        holder.date.setText(data.get(position).getDate().toString());
-        holder.url.setText(data.get(position).getUrl().toString());
-        holder.message.setText(data.get(position).getMessage().toString());
-        holder.committer.setText(data.get(position).getCommitter().toString());
+        holder.sha.append(data.get(position).getSha());
+        holder.author.append(data.get(position).getAuthor());
+        holder.date.append(data.get(position).getDate());
+        holder.url.setText(data.get(position).getUrl());
+        holder.message.append(data.get(position).getMessage());
+        holder.committer.append(data.get(position).getCommitter());
     }
 
     @Override
