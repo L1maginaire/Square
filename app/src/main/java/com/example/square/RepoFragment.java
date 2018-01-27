@@ -1,6 +1,6 @@
 package com.example.square;
 
-import android.content.Intent;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -21,6 +21,24 @@ public class RepoFragment extends Fragment {
     private TextView description;
     private Button commits;
     private Button contributors;
+    private Callbacks mCallbacks;
+
+
+    public interface Callbacks {
+        void onClickCommitButton(String name);
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        mCallbacks = (Callbacks) getActivity();
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mCallbacks = null;
+    }
 
     public static RepoFragment newInstance(String title, String description) {
         Bundle args = new Bundle();
@@ -36,17 +54,14 @@ public class RepoFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_single_repo, container, false);
         String repoName = getArguments().getString(REPO_ID);
+
         title = (TextView) v.findViewById(R.id.repoTitle);
         description = (TextView) v.findViewById(R.id.repoDescription);
         commits = (Button) v.findViewById(R.id.commits);
 
         title.setText(getArguments().getString(REPO_ID));
         description.setText(repoName);
-        commits.setOnClickListener(v1 -> {
-            Intent intent = new Intent(getActivity(), CommitsActivity.class);
-            intent.putExtra(CommitsActivity.REPO_NAME, repoName);
-            startActivity(intent);
-        });
+        commits.setOnClickListener(v1 -> mCallbacks.onClickCommitButton(repoName));
 
         return v;
     }
