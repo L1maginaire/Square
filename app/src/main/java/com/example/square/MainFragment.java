@@ -1,6 +1,5 @@
 package com.example.square;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,14 +8,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ProgressBar;
 
 import com.example.square.data.models.commitmodel.RepoData;
 import com.example.square.data.models.repomodel.Repo;
 import com.example.square.di.components.DaggerSquareComponent;
 import com.example.square.di.components.SquareComponent;
 import com.example.square.di.modules.ContextModule;
-import com.example.square.utils.Adapter;
+import com.example.square.utils.RepoAdapter;
 import com.example.square.utils.EndlessScrollImplementation;
 import com.example.square.utils.GithubApi;
 
@@ -39,7 +37,7 @@ public class MainFragment extends Fragment {
     private Callbacks mCallbacks;
     private LinearLayoutManager linearLayoutManager;
 
-    private Adapter mAdapter;
+    private RepoAdapter mRepoAdapter;
     private RecyclerView recyclerView;
 
     private int pageNumber = 1;
@@ -96,8 +94,8 @@ public class MainFragment extends Fragment {
 
 
     private void setupAdapter() {
-        mAdapter = new Adapter(getContext(), list, mCallbacks);
-        recyclerView.setAdapter(mAdapter);
+        mRepoAdapter = new RepoAdapter(getContext(), list, mCallbacks);
+        recyclerView.setAdapter(mRepoAdapter);
     }
 
     private void subscribeForData() {
@@ -114,7 +112,7 @@ public class MainFragment extends Fragment {
                                 repoData.setDescription(repo.getDescription());
                                 list.add(repoData);
                             }
-                            mAdapter.notifyItemRangeInserted(30 * pageNumber++, list.size());
+                            mRepoAdapter.notifyItemRangeInserted(30 * pageNumber++, list.size());
                         })
         );
     }

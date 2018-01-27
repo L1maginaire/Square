@@ -17,12 +17,12 @@ import com.example.square.data.models.commitmodel.RepoData;
 
 import java.util.List;
 
-public class Adapter extends RecyclerView.Adapter<Adapter.Holder> {
+public class RepoAdapter extends RecyclerView.Adapter<RepoAdapter.Holder> {
     private Context mContext;
     private List<RepoData> data;
     private MainFragment.Callbacks mCallbacks;
 
-    public Adapter(Context context, List<RepoData> list, MainFragment.Callbacks callbacks) {
+    public RepoAdapter(Context context, List<RepoData> list, MainFragment.Callbacks callbacks) {
         mContext = context;
         data = list;
         mCallbacks = callbacks;
@@ -31,7 +31,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.Holder> {
     @Override
     public Holder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(mContext);
-        View view = inflater.inflate(R.layout.recyclers_single_item, parent, false);
+        View view = inflater.inflate(R.layout.reporecycler_single_item, parent, false);
         return new Holder(view);
     }
 

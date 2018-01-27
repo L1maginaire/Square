@@ -18,8 +18,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".RepoActivity">
-        </activity>
+        <activity android:name=".RepoActivity"></activity>
+        <activity android:name=".CommitsActivity"></activity>
     </application>
+
 </manifest>
