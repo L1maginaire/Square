@@ -68,7 +68,7 @@ public class CommitsActivity extends AppCompatActivity {
     }
 
     private void subscribeForData(String repoName) {
-        mCompositeDisposable.add(mGithubApi.getCommits(/*repoName, */pageNumber)
+        mCompositeDisposable.add(mGithubApi.getCommits(repoName, pageNumber)
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
 //                        .map(data -> ())

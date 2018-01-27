@@ -20,8 +20,8 @@ public interface GithubApi {
     @GET("users/square/repos")
     Single<List<Repo>> getSquareRepos(@Query("page") int page);
 
-    @GET("repos/square/retrofit/commits")
-    Single<List<Commit>> getCommits(/*@Path("reponame")String repoName,*/ @Query("page") int page);
+    @GET("repos/square/{repo}/commits")
+    Single<List<Commit>> getCommits(@Path("repo")String repoName, @Query("page") int page);
 
 
     //https://api.github.com/

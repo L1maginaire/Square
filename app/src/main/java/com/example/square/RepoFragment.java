@@ -35,7 +35,7 @@ public class RepoFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_single_repo, container, false);
-        String repoName = getArguments().getString(REPO_DESCRIPTION);
+        String repoName = getArguments().getString(REPO_ID);
         title = (TextView) v.findViewById(R.id.repoTitle);
         description = (TextView) v.findViewById(R.id.repoDescription);
         commits = (Button) v.findViewById(R.id.commits);
