@@ -26,6 +26,7 @@ public class RepoFragment extends Fragment {
 
     public interface Callbacks {
         void onClickCommitButton(String name);
+        void onClickContributorsButton(String name);
     }
 
     @Override
@@ -53,15 +54,17 @@ public class RepoFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_single_repo, container, false);
-        String repoName = getArguments().getString(REPO_ID);
+        final String repoName = getArguments().getString(REPO_ID);
 
         title = (TextView) v.findViewById(R.id.repoTitle);
         description = (TextView) v.findViewById(R.id.repoDescription);
         commits = (Button) v.findViewById(R.id.commits);
+        contributors = (Button) v.findViewById(R.id.contributors);
 
         title.setText(getArguments().getString(REPO_ID));
         description.setText(repoName);
         commits.setOnClickListener(v1 -> mCallbacks.onClickCommitButton(repoName));
+        contributors.setOnClickListener(v2 -> mCallbacks.onClickContributorsButton(repoName));
 
         return v;
     }

@@ -22,6 +22,13 @@ public class RepoActivity extends SingleFragmentActivity implements RepoFragment
         startActivity(intent);
     }
 
+    @Override
+    public void onClickContributorsButton(String name) {
+        Intent intent = new Intent(this, ContributorsActivity.class);
+        intent.putExtra(CommitsActivity.REPO_NAME, name);
+        startActivity(intent);
+    }
+
     /*@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

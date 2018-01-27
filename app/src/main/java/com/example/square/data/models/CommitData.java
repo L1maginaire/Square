@@ -1,4 +1,4 @@
-package com.example.square.data.models.commitmodel;
+package com.example.square.data.models;
 
 /**
  * Created by l1maginaire on 1/27/18.

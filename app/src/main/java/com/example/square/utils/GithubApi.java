@@ -5,6 +5,7 @@ package com.example.square.utils;
  */
 
 import com.example.square.data.models.commitmodel.Commit;
+import com.example.square.data.models.contributormodel.Contributor;
 import com.example.square.data.models.repomodel.Repo;
 
 import java.util.List;
@@ -22,6 +23,9 @@ public interface GithubApi {
 
     @GET("repos/square/{repo}/commits")
     Single<List<Commit>> getCommits(@Path("repo")String repoName, @Query("page") int page);
+
+    @GET("repos/square/{repo}/contributors")
+    Single<List<Contributor>> getContributors(@Path("repo")String repoName, @Query("page") int page);
 
 
     //https://api.github.com/
