@@ -6,7 +6,8 @@
 
     <TableRow
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:padding="3dp">
 
         <TextView
             android:id="@+id/name"
@@ -25,7 +26,8 @@
         <ImageView
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:src="@drawable/star" />
+            android:src="@drawable/star"
+            android:paddingRight="5dp"/>
 
         <TextView
             android:id="@+id/starsCount"
@@ -38,7 +40,8 @@
         <ImageView
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:src="@drawable/fork" />
+            android:src="@drawable/fork"
+            android:paddingRight="5dp"/>
 
         <TextView
             android:id="@+id/forksCount"
