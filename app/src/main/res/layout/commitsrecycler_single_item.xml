@@ -3,12 +3,13 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="5dp"
+    android:layout_margin="5dp"
+    android:background="@color/single_commit_background"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <TextView
         android:id="@+id/comSha"
-        android:text="SHA: "
+        android:text="SHA:\n"
         android:padding="3dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
@@ -33,6 +34,7 @@
     <TextView
         android:id="@+id/comUrl"
         android:padding="3dp"
+        android:text="URL"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:visibility="gone"/>
@@ -40,7 +42,7 @@
     <TextView
         android:id="@+id/comMessage"
         android:text="Message:\n"
-        android:background="@color/pale_background"
+        android:background="@color/message_background"
         android:padding="3dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

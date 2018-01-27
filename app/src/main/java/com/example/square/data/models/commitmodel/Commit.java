@@ -19,7 +19,7 @@ public class Commit {
     @SerializedName("url")
     @Expose
     private String url;
-    @SerializedName("htmlDetailsurl")
+    @SerializedName("html_url")
     @Expose
     private String htmlUrl;
     @SerializedName("commentsDetailsurl")

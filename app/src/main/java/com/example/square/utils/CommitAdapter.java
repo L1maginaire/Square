@@ -5,12 +5,15 @@ package com.example.square.utils;
  */
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.square.BrowserActivity;
 import com.example.square.R;
 import com.example.square.data.models.commitmodel.CommitData;
 
@@ -51,11 +54,15 @@ public class CommitAdapter extends RecyclerView.Adapter<CommitAdapter.Holder> {
                 areHidden = true;
             }
         });
-
-        holder.sha.append(data.get(position).getSha());
-        holder.author.append(data.get(position).getAuthor());
-        holder.date.append(data.get(position).getDate());
-        holder.url.setText(data.get(position).getUrl());
+        CommitData cd = data.get(position);
+        holder.sha.append(cd.getSha());
+        holder.author.append(cd.getAuthor());
+        holder.date.append(cd.getDate());
+        holder.url.setOnClickListener(v -> {
+            String url = cd.getUrl();
+            Intent i = BrowserActivity.newIntent(mContext, Uri.parse(url));
+            mContext.startActivity(i);
+        });
         holder.message.append(data.get(position).getMessage());
         holder.committer.append(data.get(position).getCommitter());
     }

@@ -87,7 +87,7 @@ public class CommitsActivity extends AppCompatActivity {
                                 commitData.setDate(dateFormat(ss));
                                 commitData.setMessage(commit.getCommit().getMessage());
                                 commitData.setSha(commit.getSha());
-                                commitData.setUrl(commit.getCommit().getUrl());
+                                commitData.setUrl(commit.getHtmlUrl());
                                 commitList.add(commitData);
                             }
                             mCommitAdapter.notifyItemRangeInserted(30 * pageNumber++, commitList.size());
