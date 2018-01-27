@@ -81,10 +81,9 @@ public class CommitsActivity extends AppCompatActivity {
                         .subscribe(data -> {
                             for (Commit commit : data) {
                                 CommitData commitData  = new CommitData();
-                                commitData.setAuthor(commit.getCommit().getAuthor().getName()); //todo to map
-                                commitData.setCommitter(commit.getCommit().getCommitter().getName());
-                                String ss = commit.getCommit().getAuthor().getDate();
-                                commitData.setDate(dateFormat(ss));
+                                commitData.setAuthor(nameFormat(commit.getCommit().getAuthor().getName())); //todo to map
+                                commitData.setCommitter(nameFormat(commit.getCommit().getCommitter().getName()));
+                                commitData.setDate(dateFormat(commit.getCommit().getAuthor().getDate()));
                                 commitData.setMessage(commit.getCommit().getMessage());
                                 commitData.setSha(commit.getSha());
                                 commitData.setUrl(commit.getHtmlUrl());
@@ -106,8 +105,14 @@ public class CommitsActivity extends AppCompatActivity {
     }
 
     private String nameFormat(String name){
-
-        return name;
+        String[] strings = name.split(" ");
+        StringBuilder sb = new StringBuilder();
+        for (String s:strings) {
+            sb.append(s.substring(0, 1).toUpperCase());
+            sb.append(s.substring(1).toLowerCase());
+            sb.append(" ");
+        }
+        return sb.toString();
     }
 
     @Override

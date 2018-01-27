@@ -16,7 +16,6 @@
     <TextView
         android:id="@+id/comAuthor"
         android:textStyle="bold"
-        android:text="Author: "
         android:padding="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
@@ -51,7 +50,6 @@
 
     <TextView
         android:id="@+id/comCommitter"
-        android:text="Committer: "
         android:padding="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
