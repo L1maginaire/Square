@@ -1,6 +1,7 @@
 package com.example.square;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -36,7 +37,6 @@ public class MainFragment extends Fragment {
     private GithubApi githubApi;
     private CompositeDisposable mCompositeDisposable = new CompositeDisposable();
     private Callbacks mCallbacks;
-    private ProgressBar progressBar;
     private LinearLayoutManager linearLayoutManager;
 
     private Adapter mAdapter;
@@ -49,9 +49,9 @@ public class MainFragment extends Fragment {
     }
 
     @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        mCallbacks = (Callbacks) activity;
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        mCallbacks = (Callbacks) getActivity();
     }
 
     @Override
@@ -80,7 +80,6 @@ public class MainFragment extends Fragment {
                 subscribeForData();
             }
         });
-        progressBar = (ProgressBar) v.findViewById(R.id.onLoadMore);
 
         list = new ArrayList<>();
         setupAdapter();
@@ -94,7 +93,6 @@ public class MainFragment extends Fragment {
 
         return v;
     }
-
 
 
     private void setupAdapter() {
@@ -116,7 +114,7 @@ public class MainFragment extends Fragment {
                                 repoData.setDescription(repo.getDescription());
                                 list.add(repoData);
                             }
-                            mAdapter.notifyItemRangeInserted(30*pageNumber++, list.size());
+                            mAdapter.notifyItemRangeInserted(30 * pageNumber++, list.size());
                         })
         );
     }
