@@ -6,28 +6,28 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <TextView
-        android:id="@+id/sha"
+        android:id="@+id/comSha"
         android:text="0"
         android:padding="3dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
     <TextView
-        android:id="@+id/author"
+        android:id="@+id/comAuthor"
         android:text="A"
         android:padding="3dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
     <TextView
-        android:id="@+id/date"
+        android:id="@+id/comDate"
         android:text="B"
         android:padding="3dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
     <TextView
-        android:id="@+id/url"
+        android:id="@+id/comUrl"
         android:text="C"
         android:padding="3dp"
         android:layout_width="match_parent"
@@ -35,7 +35,7 @@
         android:visibility="gone"/>
 
     <TextView
-        android:id="@+id/message"
+        android:id="@+id/comMessage"
         android:text="D"
         android:padding="3dp"
         android:layout_width="match_parent"
@@ -43,7 +43,7 @@
         android:visibility="gone"/>
 
     <TextView
-        android:id="@+id/committer"
+        android:id="@+id/comCommitter"
         android:text="E"
         android:padding="3dp"
         android:layout_width="match_parent"
