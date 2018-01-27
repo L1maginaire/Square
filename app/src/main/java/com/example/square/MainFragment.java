@@ -8,7 +8,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.example.square.data.models.commitmodel.RepoData;
 import com.example.square.data.models.repomodel.Repo;
@@ -17,7 +16,6 @@ import com.example.square.di.components.SquareComponent;
 import com.example.square.di.modules.ContextModule;
 import com.example.square.utils.Adapter;
 import com.example.square.utils.GithubApi;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,6 +53,7 @@ public class MainFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mCallbacks = null;
+        mCompositeDisposable.clear();
     }
 
     @Override
@@ -85,7 +84,7 @@ public class MainFragment extends Fragment {
                             for (Repo repo:data) {
                                 RepoData repoData = new RepoData();
                                 repoData.setForks(repo.getForksCount());
-                                repoData.setStars(repo.getStargazersCount()); //проверить
+                                repoData.setStars(repo.getStargazersCount());
                                 repoData.setName(repo.getName());
                                 repoData.setDescription(repo.getDescription());
                                 list.add(repoData);
