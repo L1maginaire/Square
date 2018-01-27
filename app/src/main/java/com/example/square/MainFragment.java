@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import com.example.square.data.models.commitmodel.RepoData;
 import com.example.square.data.models.repomodel.Repo;
@@ -15,6 +16,7 @@ import com.example.square.di.components.DaggerSquareComponent;
 import com.example.square.di.components.SquareComponent;
 import com.example.square.di.modules.ContextModule;
 import com.example.square.utils.Adapter;
+import com.example.square.utils.EndlessScrollImplementation;
 import com.example.square.utils.GithubApi;
 
 import java.util.ArrayList;
@@ -32,12 +34,15 @@ public class MainFragment extends Fragment {
     private final static String TAG = MainActivity.class.getSimpleName();
     private List<RepoData> list = new ArrayList<>();
     private GithubApi githubApi;
-    private CompositeDisposable mCompositeDisposable;
+    private CompositeDisposable mCompositeDisposable = new CompositeDisposable();
     private Callbacks mCallbacks;
+    private ProgressBar progressBar;
+    private LinearLayoutManager linearLayoutManager;
 
     private Adapter mAdapter;
     private RecyclerView recyclerView;
 
+    private int pageNumber = 1;
 
     public interface Callbacks {
         void onRepoSelected(String title, String description);
@@ -46,7 +51,7 @@ public class MainFragment extends Fragment {
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-        mCallbacks = (Callbacks)activity;
+        mCallbacks = (Callbacks) activity;
     }
 
     @Override
@@ -59,29 +64,51 @@ public class MainFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getActivity().setTitle(R.string.app_name);
+        getActivity().setTitle(R.string.app_name); //todo по умолчанию?
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.custom_recycler, parent, false);
-        list = new ArrayList<>();
+        linearLayoutManager = new LinearLayoutManager(getContext());
+        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView = (RecyclerView) v.findViewById(R.id.custom_recycler);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext())); // todo: dagger?
+        recyclerView.setLayoutManager(linearLayoutManager);// todo: dagger?
+        recyclerView.addOnScrollListener(new EndlessScrollImplementation(linearLayoutManager) {
+            @Override
+            public void onLoadMore() {
+                subscribeForData();
+            }
+        });
+        progressBar = (ProgressBar) v.findViewById(R.id.onLoadMore);
+
+        list = new ArrayList<>();
+        setupAdapter();
 
         SquareComponent component = DaggerSquareComponent.builder()
                 .contextModule(new ContextModule(getContext()))
                 .build();
         githubApi = component.getGithubService();
 
-        mCompositeDisposable = new CompositeDisposable();
+        subscribeForData();
 
-        mCompositeDisposable.add(githubApi.getSquareRepos()
+        return v;
+    }
+
+
+
+    private void setupAdapter() {
+        mAdapter = new Adapter(getContext(), list, mCallbacks);
+        recyclerView.setAdapter(mAdapter);
+    }
+
+    private void subscribeForData() {
+        mCompositeDisposable.add(githubApi.getSquareRepos(pageNumber)
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
 //                        .map(data -> ())
                         .subscribe(data -> {
-                            for (Repo repo:data) {
+                            for (Repo repo : data) {
                                 RepoData repoData = new RepoData();
                                 repoData.setForks(repo.getForksCount());
                                 repoData.setStars(repo.getStargazersCount());
@@ -89,14 +116,8 @@ public class MainFragment extends Fragment {
                                 repoData.setDescription(repo.getDescription());
                                 list.add(repoData);
                             }
-                            setupAdapter();
+                            mAdapter.notifyItemRangeInserted(30*pageNumber++, list.size());
                         })
         );
-        return v;
-    }
-
-    private void setupAdapter() {
-        mAdapter = new Adapter(getContext(), list, mCallbacks);
-        recyclerView.setAdapter(mAdapter);
     }
 }
