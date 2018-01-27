@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorPrimary">#37474F</color>
+    <color name="colorPrimaryDark">#263238</color>
     <color name="colorAccent">#FF4081</color>
     <color name="gray">#BDBDBD</color>
-    <color name="message_background">#B0BEC5</color>
-    <color name="single_commit_background">#90A4AE</color>
+    <color name="message_background">#78909C</color>
+    <color name="single_commit_item">#90A4AE</color>
+    <color name="single_commit_background">#B0BEC5</color>
+    <color name="url_color">#0000EE</color>
 </resources>

@@ -105,6 +105,11 @@ public class CommitsActivity extends AppCompatActivity {
         return dateString;
     }
 
+    private String nameFormat(String name){
+
+        return name;
+    }
+
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);//todo

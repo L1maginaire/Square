@@ -55,16 +55,16 @@ public class CommitAdapter extends RecyclerView.Adapter<CommitAdapter.Holder> {
             }
         });
         CommitData cd = data.get(position);
-        holder.sha.append(cd.getSha());
-        holder.author.append(cd.getAuthor());
-        holder.date.append(cd.getDate());
+        holder.sha.setText("SHA: " + cd.getSha());
+        holder.author.setText("Author: " +cd.getAuthor());
+        holder.date.setText(cd.getDate());
         holder.url.setOnClickListener(v -> {
             String url = cd.getUrl();
             Intent i = BrowserActivity.newIntent(mContext, Uri.parse(url));
             mContext.startActivity(i);
         });
-        holder.message.append(data.get(position).getMessage());
-        holder.committer.append(data.get(position).getCommitter());
+        holder.message.setText(data.get(position).getMessage());
+        holder.committer.setText("Committer: "+data.get(position).getCommitter());
     }
 
     @Override
