@@ -1,6 +1,7 @@
 package com.example.square;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -9,6 +10,7 @@ import android.util.Log;
 public class MainActivity extends SingleFragmentActivity implements MainFragment.Callbacks{
 
     private final static String TAG = MainActivity.class.getSimpleName();
+    private static final String SQUARE_URL = "https://github.com/square";
 
     @Override
     protected Fragment createFragment() {
@@ -43,5 +45,11 @@ public class MainActivity extends SingleFragmentActivity implements MainFragment
             ft.add(R.id.detailFragmentContainer, newDetail);
             ft.commit();
         }
+    }
+
+    @Override
+    public void onLogoClicked() {
+        Intent i = BrowserActivity.newIntent(this, Uri.parse(SQUARE_URL));
+        startActivity(i);
     }
 }

@@ -13,10 +13,9 @@ import com.example.square.di.modules.ContextModule;
 import com.example.square.utils.ContributorsAdapter;
 import com.example.square.utils.EndlessScrollImplementation;
 import com.example.square.utils.GithubApi;
+import com.squareup.picasso.Picasso;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
@@ -56,16 +55,16 @@ public class ContributorsActivity extends AppCompatActivity {
             }
         });
         contributorsList = new ArrayList<>();
-        setupAdapter();
         SquareComponent component = DaggerSquareComponent.builder()
                 .contextModule(new ContextModule(this))
                 .build();
         mGithubApi = component.getGithubService();
+        setupAdapter(component.getPicasso());
         fetchData(s);
     }
 
-    private void setupAdapter() {
-        mContributorsAdapter = new ContributorsAdapter(this, contributorsList);
+    private void setupAdapter(Picasso picasso) {
+        mContributorsAdapter = new ContributorsAdapter(this, contributorsList, picasso);
         mRecyclerView.setAdapter(mContributorsAdapter);
     }
 
