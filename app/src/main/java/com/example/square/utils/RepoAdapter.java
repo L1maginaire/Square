@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import com.example.square.ui.MainFragment;
 import com.example.square.R;
-import com.example.square.data.models.commitmodel.RepoData;
+import com.example.square.data.models.RepoData;
 
 import java.util.List;
 

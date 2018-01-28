@@ -13,10 +13,11 @@ import com.example.square.di.components.SquareComponent;
 import com.example.square.di.modules.ContextModule;
 import com.example.square.utils.ContributorsAdapter;
 import com.example.square.utils.EndlessScrollImplementation;
-import com.example.square.utils.GithubApi;
+import com.example.square.interfaces.GithubApi;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
@@ -77,42 +78,20 @@ public class ContributorsActivity extends AppCompatActivity {
                         .observeOn(AndroidSchedulers.mainThread())
 //                        .map(data -> ())
                         .subscribe(data -> {
-                            for (Contributor contributor: data) {
-                                ContributorsData contributorsData  = new ContributorsData();
-                                contributorsData.setAvatarUrl(contributor.getAvatarUrl());
-                                contributorsData.setContributions(contributor.getContributions());
-                                contributorsData.setLogin(contributor.getLogin());
-                                contributorsData.setProfileUrl(contributor.getHtmlUrl());
-                                contributorsList.add(contributorsData);
-                            }
+                            dataProcessing(data);
                             mContributorsAdapter.notifyItemRangeInserted(30 * pageNumber++, contributorsList.size());
                         })
         );
     }
 
-/*    private String dateFormat(String dateString) {
-        try {
-            date = dfFrom.parse(dateString);
-            dateString = dfTo.format(date);
-        } catch (ParseException e) {
-            e.printStackTrace();
+    private void dataProcessing(List<Contributor> contributors) {
+        for (Contributor contributor : contributors) {
+            ContributorsData contributorsData = new ContributorsData();
+            contributorsData.setAvatarUrl(contributor.getAvatarUrl());
+            contributorsData.setContributions(contributor.getContributions());
+            contributorsData.setLogin(contributor.getLogin());
+            contributorsData.setProfileUrl(contributor.getHtmlUrl());
+            contributorsList.add(contributorsData);
         }
-        return dateString;
-    }
-
-    private String nameFormat(String name) {
-        String[] strings = name.split(" ");
-        StringBuilder sb = new StringBuilder();
-        for (String s : strings) {
-            sb.append(s.substring(0, 1).toUpperCase());
-            sb.append(s.substring(1).toLowerCase());
-            sb.append(" ");
-        }
-        return sb.toString();
-    }*/
-
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);//todo
     }
 }

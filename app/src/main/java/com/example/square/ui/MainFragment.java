@@ -11,14 +11,14 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.example.square.R;
-import com.example.square.data.models.commitmodel.RepoData;
+import com.example.square.data.models.RepoData;
 import com.example.square.data.models.repomodel.Repo;
 import com.example.square.di.components.DaggerSquareComponent;
 import com.example.square.di.components.SquareComponent;
 import com.example.square.di.modules.ContextModule;
 import com.example.square.utils.RepoAdapter;
 import com.example.square.utils.EndlessScrollImplementation;
-import com.example.square.utils.GithubApi;
+import com.example.square.interfaces.GithubApi;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -91,7 +91,6 @@ public class MainFragment extends Fragment {
 
         repoData = new ArrayList<>();
         setupAdapter();
-
         SquareComponent component = DaggerSquareComponent.builder()
                 .contextModule(new ContextModule(getContext()))
                 .build();
@@ -112,18 +111,21 @@ public class MainFragment extends Fragment {
         mCompositeDisposable.add(mGithubApi.getSquareRepos(pageNumber)
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
-//                        .map(data -> ())
                         .subscribe(data -> {
-                            for (Repo repo : data) {
-                                RepoData repoData = new RepoData();
-                                repoData.setForks(repo.getForksCount());
-                                repoData.setStars(repo.getStargazersCount());
-                                repoData.setName(repo.getName());
-                                repoData.setDescription(repo.getDescription());
-                                this.repoData.add(repoData);
-                            }
+                            dataProcessing(data);
                             mRepoAdapter.notifyItemRangeInserted(30 * pageNumber++, repoData.size());
                         })
         );
+    }
+
+    private void dataProcessing(List<Repo> repos){
+        for (Repo repo : repos) {
+            RepoData repoData = new RepoData();
+            repoData.setForks(repo.getForksCount());
+            repoData.setStars(repo.getStargazersCount());
+            repoData.setName(repo.getName());
+            repoData.setDescription(repo.getDescription());
+            this.repoData.add(repoData);
+        }
     }
 }

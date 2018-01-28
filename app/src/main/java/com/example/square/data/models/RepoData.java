@@ -1,4 +1,4 @@
-package com.example.square.data.models.commitmodel;
+package com.example.square.data.models;
 
 import java.io.Serializable;
 

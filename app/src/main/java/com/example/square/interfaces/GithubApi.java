@@ -1,4 +1,4 @@
-package com.example.square.utils;
+package com.example.square.interfaces;
 
 /**
  * Created by l1maginaire on 1/25/18.
@@ -26,9 +26,4 @@ public interface GithubApi {
 
     @GET("repos/square/{repo}/contributors")
     Single<List<Contributor>> getContributors(@Path("repo")String repoName, @Query("page") int page);
-
-
-    //https://api.github.com/
-//    @GET("{date}")
-//    Single<MetaCurrency> statistics(@Path("date") String date, @Query("base") String base);
 }

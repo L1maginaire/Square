@@ -5,7 +5,7 @@ package com.example.square.di.modules;
  */
 
 import com.example.square.interfaces.ApplicationScope;
-import com.example.square.utils.GithubApi;
+import com.example.square.interfaces.GithubApi;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
