@@ -2,16 +2,14 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_margin="10dp"
+    style="@style/Containers"
     tools:context="com.example.square.ui.RepoActivity">
 
     <TextView
         android:id="@+id/repoTitle"
         android:textSize="40sp"
         android:padding="15dp"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="parent"/>
 
@@ -20,7 +18,7 @@
         android:textSize="15sp"
         android:padding="10dp"
         android:background="@color/message_background"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/repoTitle"/>
 
@@ -29,12 +27,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/commits"
-        app:layout_constraintBottom_toTopOf="@id/contributors"/>
+        app:layout_constraintBottom_toTopOf="@id/contributors" />
 
     <Button
         android:id="@+id/contributors"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
         android:text="@string/contributors"
         app:layout_constraintBottom_toTopOf="parent"/>
 

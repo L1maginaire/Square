@@ -1,57 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:layout_margin="10dp"
-    android:background="@color/item_background">
+    style="@style/SingleItem"
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/comSha"
-        android:padding="5dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        style="@style/TextViewRec" />
 
     <TextView
         android:id="@+id/comAuthor"
-        android:textStyle="bold"
-        android:padding="5dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        style="@style/TextViewRec"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/comDate"
-        android:padding="5dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/gray"
-        android:layout_gravity="right"/>
+        style="@style/TextViewRec"
+        android:textColor="@color/gray" />
 
     <TextView
         android:id="@+id/comUrl"
-        android:paddingTop="5dp"
-        android:paddingBottom="5dp"
+        style="@style/TextViewRec"
         android:paddingLeft="10dp"
         android:text="@string/url"
         android:textColor="@color/url_color"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:visibility="gone"/>
+        android:visibility="gone" />
 
     <TextView
         android:id="@+id/comMessage"
-        android:background="@color/message_background"
+        style="@style/TextViewRec"
         android:layout_margin="7dp"
-        android:padding="7dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:visibility="gone"/>
+        android:background="@color/message_background"
+        android:visibility="gone" />
 
     <TextView
         android:id="@+id/comCommitter"
-        android:padding="5dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:visibility="gone"/>
+        style="@style/TextViewRec"
+        android:visibility="gone" />
 
 </LinearLayout>
