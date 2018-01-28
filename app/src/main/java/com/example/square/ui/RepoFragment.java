@@ -60,9 +60,6 @@ public class RepoFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_single_repo, container, false);
         final String repoName = getArguments().getString(REPO_ID);
         
-//        AppCompatActivity activity = (AppCompatActivity) getActivity();
-//        activity.getSupportActionBar().setSubtitle(repoName);
-
         title = (TextView) v.findViewById(R.id.repoTitle);
         description = (TextView) v.findViewById(R.id.repoDescription);
         commits = (Button) v.findViewById(R.id.commits);

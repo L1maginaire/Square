@@ -39,10 +39,8 @@ public class MainFragment extends Fragment {
     private Callbacks mCallbacks;
     private LinearLayoutManager mLinearLayoutManager;
     private ImageView logo;
-
     private RepoAdapter mRepoAdapter;
     private RecyclerView mRecyclerView;
-
     private int pageNumber = 1;
 
     public interface Callbacks {
@@ -62,11 +60,6 @@ public class MainFragment extends Fragment {
         super.onDetach();
         mCallbacks = null;
         mCompositeDisposable.clear();
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
     }
 
     @Override

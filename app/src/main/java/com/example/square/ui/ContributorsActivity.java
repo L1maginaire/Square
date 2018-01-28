@@ -76,7 +76,6 @@ public class ContributorsActivity extends AppCompatActivity {
         mCompositeDisposable.add(mGithubApi.getContributors(repoName, pageNumber)
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
-//                        .map(data -> ())
                         .subscribe(data -> {
                             dataProcessing(data);
                             mContributorsAdapter.notifyItemRangeInserted(30 * pageNumber++, contributorsList.size());
