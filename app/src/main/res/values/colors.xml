@@ -5,7 +5,7 @@
     <color name="colorAccent">#FF4081</color>
     <color name="gray">#BDBDBD</color>
     <color name="message_background">#78909C</color>
-    <color name="single_commit_item">#90A4AE</color>
-    <color name="single_commit_background">#B0BEC5</color>
+    <color name="item_background">#90A4AE</color>
+    <color name="page_background">#B0BEC5</color>
     <color name="url_color">#0000EE</color>
 </resources>

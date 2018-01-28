@@ -72,7 +72,7 @@ public class MainFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.custom_recycler, parent, false);
+        View v = inflater.inflate(R.layout.fragment_main, parent, false);
         logo = v.findViewById(R.id.squareLogo);
         logo.setOnClickListener(v1 -> {
             if (mCallbacks != null)

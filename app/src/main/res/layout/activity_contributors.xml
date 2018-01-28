@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.square.ui.CommitsActivity"
-    android:background="@color/single_commit_background">
+    android:background="@color/page_background">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/contributorsRecycler"

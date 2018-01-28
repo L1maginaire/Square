@@ -32,7 +32,7 @@ public class CommitAdapter extends RecyclerView.Adapter<CommitAdapter.Holder> {
     @Override
     public Holder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(mContext);
-        View view = inflater.inflate(R.layout.commitsrecycler_single_item, parent, false);
+        View view = inflater.inflate(R.layout.commits_recycler_single_item, parent, false);
         return new Holder(view);
     }
 

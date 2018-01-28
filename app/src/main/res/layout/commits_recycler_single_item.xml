@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:layout_margin="10dp"
-    android:background="@color/single_commit_item">
+    android:background="@color/item_background">
 
     <TextView
         android:id="@+id/comSha"

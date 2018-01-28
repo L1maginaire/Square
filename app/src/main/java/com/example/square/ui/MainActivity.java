@@ -5,13 +5,10 @@ import android.net.Uri;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 
 import com.example.square.R;
 
 public class MainActivity extends SingleFragmentActivity implements MainFragment.Callbacks, RepoFragment.Callbacks{
-
-    private final static String TAG = MainActivity.class.getSimpleName();
     private static final String SQUARE_URL = "https://github.com/square";
 
     @Override
@@ -26,8 +23,6 @@ public class MainActivity extends SingleFragmentActivity implements MainFragment
 
     @Override
     public void onRepoSelected(String title, String description) {
-//        Log.d(TAG, title);
-//        Log.d(TAG, description);
 
         if (findViewById(R.id.detailFragmentContainer) == null) {
             Intent i = new Intent(this, RepoActivity.class);
@@ -64,8 +59,8 @@ public class MainActivity extends SingleFragmentActivity implements MainFragment
 
     @Override
     public void onClickContributorsButton(String name) {
-        Intent intent = new Intent(this, CommitsActivity.class);
-        intent.putExtra(CommitsActivity.REPO_NAME, name);
+        Intent intent = new Intent(this, ContributorsActivity.class);
+        intent.putExtra(ContributorsActivity.REPO_NAME, name);
         startActivity(intent);
     }
 }
