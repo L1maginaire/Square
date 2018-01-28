@@ -55,7 +55,7 @@ public class ContributorsActivity extends AppCompatActivity {
         mRecyclerView.addOnScrollListener(new EndlessScrollImplementation(mLinearLayoutManager) {
             @Override
             public void onLoadMore() {
-                fetchData(repoName);
+                subscribeForData(repoName);
             }
         });
         contributorsList = new ArrayList<>();
@@ -64,7 +64,7 @@ public class ContributorsActivity extends AppCompatActivity {
                 .build();
         mGithubApi = component.getGithubService();
         setupAdapter(component.getPicasso());
-        fetchData(repoName);
+        subscribeForData(repoName);
     }
 
     private void setupAdapter(Picasso picasso) {
@@ -72,7 +72,7 @@ public class ContributorsActivity extends AppCompatActivity {
         mRecyclerView.setAdapter(mContributorsAdapter);
     }
 
-    private void fetchData(String repoName) {
+    private void subscribeForData(String repoName) {
         mCompositeDisposable.add(mGithubApi.getContributors(repoName, pageNumber)
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())

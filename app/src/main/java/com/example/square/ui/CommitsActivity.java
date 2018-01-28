@@ -17,10 +17,7 @@ import com.example.square.utils.EndlessScrollImplementation;
 import com.example.square.interfaces.GithubApi;
 import com.example.square.utils.StringProcessor;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -34,7 +31,8 @@ public class CommitsActivity extends AppCompatActivity {
     private LinearLayoutManager mLinearLayoutManager;
     private CommitAdapter mCommitAdapter;
     private RecyclerView mRecyclerView;
-    private ArrayList<CommitData> commitList;
+    private ArrayList<CommitData> commitList = new ArrayList<>();
+    ;
     private GithubApi mGithubApi;
     private int pageNumber = 1;
 
@@ -60,16 +58,15 @@ public class CommitsActivity extends AppCompatActivity {
         mRecyclerView.addOnScrollListener(new EndlessScrollImplementation(mLinearLayoutManager) {
             @Override
             public void onLoadMore() {
-                fetchData(repoName);
+                subscribeForData(repoName);
             }
         });
-        commitList = new ArrayList<>();
         setupAdapter();
         SquareComponent component = DaggerSquareComponent.builder()
                 .contextModule(new ContextModule(this))
                 .build();
         mGithubApi = component.getGithubService();
-        fetchData(repoName);
+        subscribeForData(repoName);
     }
 
     private void setupAdapter() {
@@ -77,7 +74,7 @@ public class CommitsActivity extends AppCompatActivity {
         mRecyclerView.setAdapter(mCommitAdapter);
     }
 
-    private void fetchData(String repoName) {
+    private void subscribeForData(String repoName) {
         mCompositeDisposable.add(mGithubApi.getCommits(repoName, pageNumber)
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
@@ -100,10 +97,5 @@ public class CommitsActivity extends AppCompatActivity {
             commitData.setUrl(commit.getHtmlUrl());
             commitList.add(commitData);
         }
-    }
-
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
     }
 }
