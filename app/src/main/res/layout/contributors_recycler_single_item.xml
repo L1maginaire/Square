@@ -41,7 +41,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            android:text="User's repos"
+            android:text="@string/users_repos"
             android:textColor="@color/url_color"
             android:textSize="14sp"
             app:layout_constraintBottom_toTopOf="@id/conContributionsCount"

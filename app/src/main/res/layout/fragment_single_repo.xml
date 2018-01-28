@@ -5,11 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="5dp"
-    tools:context="com.example.square.RepoActivity">
+    tools:context="com.example.square.ui.RepoActivity">
 
     <TextView
         android:id="@+id/repoTitle"
-        android:textSize="40dp"
+        android:textSize="40sp"
         android:paddingBottom="5dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -17,7 +17,7 @@
 
     <TextView
         android:id="@+id/repoDescription"
-        android:textSize="15dp"
+        android:textSize="15sp"
         android:paddingBottom="5dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -27,14 +27,14 @@
         android:id="@+id/commits"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Commits"
+        android:text="@string/commits"
         app:layout_constraintTop_toBottomOf="@id/repoDescription"/>
 
     <Button
         android:id="@+id/contributors"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Contributors"
+        android:text="@string/contributors"
         app:layout_constraintTop_toBottomOf="@id/commits"/>
 
 </android.support.constraint.ConstraintLayout>

@@ -15,7 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="4dp"
-            android:textSize="20dp" />
+            android:textSize="20sp" />
     </TableRow>
 
     <LinearLayout
@@ -38,7 +38,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:textColor="@color/gray"
-            android:textSize="13dp" />
+            android:textSize="13sp" />
 
 
         <ImageView
@@ -54,6 +54,6 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:textColor="@color/gray"
-            android:textSize="13dp" />
+            android:textSize="13sp" />
     </LinearLayout>
 </TableLayout>

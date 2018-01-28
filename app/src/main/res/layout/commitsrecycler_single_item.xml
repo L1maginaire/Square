@@ -4,8 +4,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:layout_margin="10dp"
-    android:background="@color/single_commit_item"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:background="@color/single_commit_item">
 
     <TextView
         android:id="@+id/comSha"
@@ -33,7 +32,7 @@
         android:paddingTop="5dp"
         android:paddingBottom="5dp"
         android:paddingLeft="10dp"
-        android:text="URL"
+        android:text="@string/url"
         android:textColor="@color/url_color"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
