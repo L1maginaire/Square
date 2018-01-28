@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="url">URL</string>
-    <string name="users_repos">User\'s repos</string>
-    <string name="commits">Commits</string>
-    <string name="contributors">Contributors</string>
-</resources>

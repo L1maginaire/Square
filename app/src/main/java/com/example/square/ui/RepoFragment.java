@@ -1,5 +1,6 @@
 package com.example.square.ui;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -33,9 +34,9 @@ public class RepoFragment extends Fragment {
     }
 
     @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        mCallbacks = (Callbacks) getActivity();
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        mCallbacks = (Callbacks) activity;
     }
 
     @Override
@@ -59,8 +60,8 @@ public class RepoFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_single_repo, container, false);
         final String repoName = getArguments().getString(REPO_ID);
         
-        AppCompatActivity activity = (AppCompatActivity) getActivity();
-        activity.getSupportActionBar().setSubtitle(repoName);
+//        AppCompatActivity activity = (AppCompatActivity) getActivity();
+//        activity.getSupportActionBar().setSubtitle(repoName);
 
         title = (TextView) v.findViewById(R.id.repoTitle);
         description = (TextView) v.findViewById(R.id.repoDescription);

@@ -9,7 +9,7 @@ import android.util.Log;
 
 import com.example.square.R;
 
-public class MainActivity extends SingleFragmentActivity implements MainFragment.Callbacks{
+public class MainActivity extends SingleFragmentActivity implements MainFragment.Callbacks, RepoFragment.Callbacks{
 
     private final static String TAG = MainActivity.class.getSimpleName();
     private static final String SQUARE_URL = "https://github.com/square";
@@ -53,5 +53,19 @@ public class MainActivity extends SingleFragmentActivity implements MainFragment
     public void onLogoClicked() {
         Intent i = BrowserActivity.newIntent(this, Uri.parse(SQUARE_URL));
         startActivity(i);
+    }
+
+    @Override
+    public void onClickCommitButton(String name) {
+        Intent intent = new Intent(this, CommitsActivity.class);
+        intent.putExtra(CommitsActivity.REPO_NAME, name);
+        startActivity(intent);
+    }
+
+    @Override
+    public void onClickContributorsButton(String name) {
+        Intent intent = new Intent(this, CommitsActivity.class);
+        intent.putExtra(CommitsActivity.REPO_NAME, name);
+        startActivity(intent);
     }
 }

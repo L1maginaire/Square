@@ -82,7 +82,6 @@ public class ContributorsActivity extends AppCompatActivity {
                                 contributorsData.setAvatarUrl(contributor.getAvatarUrl());
                                 contributorsData.setContributions(contributor.getContributions());
                                 contributorsData.setLogin(contributor.getLogin());
-                                contributorsData.setReposUrl(contributor.getReposUrl());
                                 contributorsData.setProfileUrl(contributor.getHtmlUrl());
                                 contributorsList.add(contributorsData);
                             }

@@ -5,6 +5,8 @@ package com.example.square.utils;
  */
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +16,7 @@ import android.widget.TextView;
 
 import com.example.square.R;
 import com.example.square.data.models.ContributorsData;
+import com.example.square.ui.BrowserActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -36,22 +39,18 @@ public class ContributorsAdapter extends RecyclerView.Adapter<ContributorsAdapte
         return new Holder(view);
     }
 
-
     @Override
     public void onBindViewHolder(Holder holder, final int position) {
         if (data == null || data.size() == 0)
             return;
         ContributorsData cd = data.get(position);
         holder.login.setText(cd.getLogin());
+        holder.profileUrl.setOnClickListener(v -> {
+            Intent i = BrowserActivity.newIntent(mContext, Uri.parse(cd.getProfileUrl()));
+            mContext.startActivity(i);
+        });
         holder.contributionsCount.setText(String.valueOf(cd.getContributions()));
         picasso.load(cd.getAvatarUrl()).into(holder.avatar);
-//        holder.profile.setText(cd.getProfileUrl());
-//        holder.reposurl.setText(cd.getReposUrl());
-        /*holder.url.setOnClickListener(v -> {
-            String url = cd.getUrl();
-            Intent i = BrowserActivity.newIntent(mContext, Uri.parse(url));
-            mContext.startActivity(i);
-        });*/
     }
 
     @Override
@@ -62,15 +61,14 @@ public class ContributorsAdapter extends RecyclerView.Adapter<ContributorsAdapte
     class Holder extends RecyclerView.ViewHolder{
         private TextView login;
         private TextView contributionsCount;
-        private TextView profile;
-        private TextView reposurl;
+        private TextView profileUrl;
         private ImageView avatar;
 
         public Holder(View itemView) {
             super(itemView);
             login = (TextView) itemView.findViewById(R.id.conLogin);
             contributionsCount = (TextView) itemView.findViewById(R.id.conContributionsCount);
-            reposurl = (TextView) itemView.findViewById(R.id.conReposUrl);
+            profileUrl = (TextView) itemView.findViewById(R.id.conProfileUrl);
             avatar = (ImageView) itemView.findViewById(R.id.avatar);
         }
     }

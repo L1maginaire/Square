@@ -9,7 +9,6 @@ public class ContributorsData {
     private String profileUrl;
     private int contributions;
     private String avatarUrl;
-    private String reposUrl;
 
     public String getLogin() {
         return login;
@@ -41,13 +40,5 @@ public class ContributorsData {
 
     public void setAvatarUrl(String avatarUrl) {
         this.avatarUrl = avatarUrl;
-    }
-
-    public String getReposUrl() {
-        return reposUrl;
-    }
-
-    public void setReposUrl(String reposUrl) {
-        this.reposUrl = reposUrl;
     }
 }

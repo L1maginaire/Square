@@ -2,7 +2,7 @@
     <string name="app_name">Square</string>
     <string name="repos">Repos</string>
     <string name="url">URL</string>
-    <string name="users_repos">User\'s repos</string>
+    <string name="users_repos">User\'s profile</string>
     <string name="commits">Commits</string>
     <string name="contributors">Contributors</string>
 </resources>
