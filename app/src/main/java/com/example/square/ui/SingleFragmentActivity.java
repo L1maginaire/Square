@@ -1,4 +1,4 @@
-package com.example.square;
+package com.example.square.ui;
 
 /**
  * Created by l1maginaire on 1/26/18.
@@ -13,6 +13,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+
+import com.example.square.R;
 
 public abstract class SingleFragmentActivity extends AppCompatActivity {
     protected abstract Fragment createFragment();

@@ -1,10 +1,11 @@
-package com.example.square;
+package com.example.square.ui;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
+import com.example.square.R;
 import com.example.square.data.models.commitmodel.Commit;
 import com.example.square.data.models.CommitData;
 import com.example.square.di.components.DaggerSquareComponent;

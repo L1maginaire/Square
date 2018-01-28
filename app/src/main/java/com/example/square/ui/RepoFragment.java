@@ -1,4 +1,4 @@
-package com.example.square;
+package com.example.square.ui;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -9,6 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.example.square.R;
 
 /**
  * Created by l1maginaire on 1/26/18.

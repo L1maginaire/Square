@@ -1,4 +1,4 @@
-package com.example.square;
+package com.example.square.ui;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -6,6 +6,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
+
+import com.example.square.R;
 
 public class MainActivity extends SingleFragmentActivity implements MainFragment.Callbacks{
 

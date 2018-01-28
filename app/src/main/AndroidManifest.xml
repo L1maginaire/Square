@@ -11,19 +11,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".RepoActivity" />
-        <activity android:name=".CommitsActivity" />
+        <activity android:name=".ui.RepoActivity" />
+        <activity android:name=".ui.CommitsActivity" />
         <activity
-            android:name=".BrowserActivity"
+            android:name=".ui.BrowserActivity"
             android:configChanges="keyboardHidden|orientation|screenSize" />
-        <activity android:name=".ContributorsActivity"></activity>
+        <activity android:name=".ui.ContributorsActivity"></activity>
     </application>
 
 </manifest>

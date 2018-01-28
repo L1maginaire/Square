@@ -1,10 +1,10 @@
-package com.example.square;
+package com.example.square.ui;
 
 import android.content.Intent;
 import android.support.v4.app.Fragment;
 
-import static com.example.square.RepoFragment.REPO_DESCRIPTION;
-import static com.example.square.RepoFragment.REPO_ID;
+import static com.example.square.ui.RepoFragment.REPO_DESCRIPTION;
+import static com.example.square.ui.RepoFragment.REPO_ID;
 
 public class RepoActivity extends SingleFragmentActivity implements RepoFragment.Callbacks{
 

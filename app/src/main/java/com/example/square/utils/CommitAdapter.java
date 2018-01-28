@@ -13,7 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.square.BrowserActivity;
+import com.example.square.ui.BrowserActivity;
 import com.example.square.R;
 import com.example.square.data.models.CommitData;
 

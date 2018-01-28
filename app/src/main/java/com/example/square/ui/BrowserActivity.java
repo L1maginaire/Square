@@ -1,4 +1,4 @@
-package com.example.square;
+package com.example.square.ui;
 
 import android.content.Context;
 import android.content.Intent;

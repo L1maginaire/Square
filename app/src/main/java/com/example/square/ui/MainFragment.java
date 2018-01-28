@@ -1,4 +1,4 @@
-package com.example.square;
+package com.example.square.ui;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.example.square.R;
 import com.example.square.data.models.commitmodel.RepoData;
 import com.example.square.data.models.repomodel.Repo;
 import com.example.square.di.components.DaggerSquareComponent;
@@ -80,7 +81,7 @@ public class MainFragment extends Fragment {
         mLinearLayoutManager = new LinearLayoutManager(getContext());
         mLinearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mRecyclerView = (RecyclerView) v.findViewById(R.id.custom_recycler);
-        mRecyclerView.setLayoutManager(mLinearLayoutManager);// todo: dagger?
+        mRecyclerView.setLayoutManager(mLinearLayoutManager);
         mRecyclerView.addOnScrollListener(new EndlessScrollImplementation(mLinearLayoutManager) {
             @Override
             public void onLoadMore() {

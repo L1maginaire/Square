@@ -1,4 +1,4 @@
-package com.example.square;
+package com.example.square.ui;
 
 /**
  * Created by l1maginaire on 1/27/18.
@@ -16,6 +16,8 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
+
+import com.example.square.R;
 
 public class BrowserFragment extends Fragment {
     public static final String ARG_URI = "url";
