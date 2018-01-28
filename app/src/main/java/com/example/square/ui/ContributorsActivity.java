@@ -43,7 +43,9 @@ public class ContributorsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contributors);
 
-        String s = getIntent().getStringExtra(REPO_NAME);
+        String repoName = getIntent().getStringExtra(REPO_NAME);
+        getSupportActionBar().setSubtitle(repoName);
+
 
         mLinearLayoutManager = new LinearLayoutManager(this);
         mLinearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -52,7 +54,7 @@ public class ContributorsActivity extends AppCompatActivity {
         mRecyclerView.addOnScrollListener(new EndlessScrollImplementation(mLinearLayoutManager) {
             @Override
             public void onLoadMore() {
-                fetchData(s);
+                fetchData(repoName);
             }
         });
         contributorsList = new ArrayList<>();
@@ -61,7 +63,7 @@ public class ContributorsActivity extends AppCompatActivity {
                 .build();
         mGithubApi = component.getGithubService();
         setupAdapter(component.getPicasso());
-        fetchData(s);
+        fetchData(repoName);
     }
 
     private void setupAdapter(Picasso picasso) {
