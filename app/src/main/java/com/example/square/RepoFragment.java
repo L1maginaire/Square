@@ -62,7 +62,7 @@ public class RepoFragment extends Fragment {
         contributors = (Button) v.findViewById(R.id.contributors);
 
         title.setText(getArguments().getString(REPO_ID));
-        description.setText(repoName);
+        description.setText(getArguments().getString(REPO_DESCRIPTION));
         commits.setOnClickListener(v1 -> mCallbacks.onClickCommitButton(repoName));
         contributors.setOnClickListener(v2 -> mCallbacks.onClickContributorsButton(repoName));
 

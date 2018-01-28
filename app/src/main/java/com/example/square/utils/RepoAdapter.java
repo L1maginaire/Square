@@ -41,8 +41,8 @@ public class RepoAdapter extends RecyclerView.Adapter<RepoAdapter.Holder> {
         if (data == null || data.size() == 0)
             return;
         holder.name.setText(data.get(position).getName());
-        holder.stars.setText(data.get(position).getStars().toString());
-        holder.forks.setText(data.get(position).getForks().toString());
+        holder.stars.setText(String.valueOf(data.get(position).getStars()));
+        holder.forks.setText(String.valueOf(data.get(position).getForks()));
         holder.itemView.setOnClickListener(v -> mCallbacks.onRepoSelected(data.get(position).getName(),
                 data.get(position).getDescription()));
     }
