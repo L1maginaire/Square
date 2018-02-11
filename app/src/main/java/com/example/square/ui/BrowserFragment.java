@@ -21,9 +21,9 @@ import com.example.square.R;
 
 public class BrowserFragment extends Fragment {
     public static final String ARG_URI = "url";
-    private Uri mUri;
-    private WebView mWebView;
-    private ProgressBar mProgressBar;
+    private Uri uri;
+    private WebView webView;
+    private ProgressBar progressBar;
 
     public static BrowserFragment newInstance(Uri uri) {
         Bundle args = new Bundle();
@@ -36,25 +36,25 @@ public class BrowserFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mUri = getArguments().getParcelable(ARG_URI);
+        uri = getArguments().getParcelable(ARG_URI);
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.webview, container, false);
-        mProgressBar = (ProgressBar) v.findViewById(R.id.webProgress);
-        mProgressBar.setMax(100);
+        progressBar = (ProgressBar) v.findViewById(R.id.webProgress);
+        progressBar.setMax(100);
 
-        mWebView = (WebView) v.findViewById(R.id.webView);
-        mWebView.getSettings().setJavaScriptEnabled(true);
-        mWebView.setWebChromeClient(new WebChromeClient() {
+        webView = (WebView) v.findViewById(R.id.webView);
+        webView.getSettings().setJavaScriptEnabled(true);
+        webView.setWebChromeClient(new WebChromeClient() {
             public void onProgressChanged(WebView webView, int newProgress) {
                 if (newProgress == 100) {
-                    mProgressBar.setVisibility(View.GONE);
+                    progressBar.setVisibility(View.GONE);
                 } else {
-                    mProgressBar.setVisibility(View.VISIBLE);
-                    mProgressBar.setProgress(newProgress);
+                    progressBar.setVisibility(View.VISIBLE);
+                    progressBar.setProgress(newProgress);
                 }
             }
 
@@ -63,12 +63,12 @@ public class BrowserFragment extends Fragment {
                 activity.getSupportActionBar().setSubtitle(title);
             }
         });
-        mWebView.setWebViewClient(new WebViewClient() {
+        webView.setWebViewClient(new WebViewClient() {
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 return false;
             }
         });
-        mWebView.loadUrl(mUri.toString());
+        webView.loadUrl(uri.toString());
         return v;
     }
 }

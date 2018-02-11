@@ -34,13 +34,13 @@ import io.reactivex.schedulers.Schedulers;
 public class MainFragment extends Fragment {
     private final static String TAG = MainActivity.class.getSimpleName();
     private List<RepoData> repoData = new ArrayList<>();
-    private GithubApi mGithubApi;
-    private CompositeDisposable mCompositeDisposable = new CompositeDisposable();
-    private Callbacks mCallbacks;
-    private LinearLayoutManager mLinearLayoutManager;
+    private GithubApi githubApi;
+    private CompositeDisposable compositeDisposable = new CompositeDisposable();
+    private Callbacks callbacks;
+    private LinearLayoutManager linearLayoutManager;
     private ImageView logo;
-    private RepoAdapter mRepoAdapter;
-    private RecyclerView mRecyclerView;
+    private RepoAdapter repoAdapter;
+    private RecyclerView recyclerView;
     private int pageNumber = 1;
 
     public interface Callbacks {
@@ -52,14 +52,14 @@ public class MainFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        mCallbacks = (Callbacks) getActivity();
+        callbacks = (Callbacks) getActivity();
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
-        mCallbacks = null;
-        mCompositeDisposable.clear();
+        callbacks = null;
+        compositeDisposable.clear();
     }
 
     @Override
@@ -67,14 +67,14 @@ public class MainFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_main, parent, false);
         logo = v.findViewById(R.id.squareLogo);
         logo.setOnClickListener(v1 -> {
-            if (mCallbacks != null)
-                mCallbacks.onLogoClicked();
+            if (callbacks != null)
+                callbacks.onLogoClicked();
         });
-        mLinearLayoutManager = new LinearLayoutManager(getContext());
-        mLinearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        mRecyclerView = (RecyclerView) v.findViewById(R.id.custom_recycler);
-        mRecyclerView.setLayoutManager(mLinearLayoutManager);
-        mRecyclerView.addOnScrollListener(new EndlessScrollImplementation(mLinearLayoutManager) {
+        linearLayoutManager = new LinearLayoutManager(getContext());
+        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        recyclerView = (RecyclerView) v.findViewById(R.id.custom_recycler);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.addOnScrollListener(new EndlessScrollImplementation(linearLayoutManager) {
             @Override
             public void onLoadMore() {
                 subscribeForData();
@@ -86,7 +86,7 @@ public class MainFragment extends Fragment {
         SquareComponent component = DaggerSquareComponent.builder()
                 .contextModule(new ContextModule(getContext()))
                 .build();
-        mGithubApi = component.getGithubService();
+        githubApi = component.getGithubService();
 
         subscribeForData();
 
@@ -95,17 +95,17 @@ public class MainFragment extends Fragment {
 
 
     private void setupAdapter() {
-        mRepoAdapter = new RepoAdapter(getContext(), repoData, mCallbacks);
-        mRecyclerView.setAdapter(mRepoAdapter);
+        repoAdapter = new RepoAdapter(getContext(), repoData, callbacks);
+        recyclerView.setAdapter(repoAdapter);
     }
 
     private void subscribeForData() {
-        mCompositeDisposable.add(mGithubApi.getSquareRepos(pageNumber)
+        compositeDisposable.add(githubApi.getSquareRepos(pageNumber)
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(data -> {
                             dataProcessing(data);
-                            mRepoAdapter.notifyItemRangeInserted(30 * pageNumber++, repoData.size());
+                            repoAdapter.notifyItemRangeInserted(30 * pageNumber++, repoData.size());
                         })
         );
     }

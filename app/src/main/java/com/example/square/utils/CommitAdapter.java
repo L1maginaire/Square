@@ -20,18 +20,18 @@ import com.example.square.data.models.CommitData;
 import java.util.List;
 
 public class CommitAdapter extends RecyclerView.Adapter<CommitAdapter.Holder> {
-    private Context mContext;
+    private Context context;
     private List<CommitData> data;
     private boolean areHidden = true;
 
     public CommitAdapter (Context context, List<CommitData> list) {
-        mContext = context;
+        this.context = context;
         data = list;
     }
 
     @Override
     public Holder onCreateViewHolder(ViewGroup parent, int viewType) {
-        LayoutInflater inflater = LayoutInflater.from(mContext);
+        LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.commits_recycler_single_item, parent, false);
         return new Holder(view);
     }
@@ -60,8 +60,8 @@ public class CommitAdapter extends RecyclerView.Adapter<CommitAdapter.Holder> {
         holder.date.setText(cd.getDate());
         holder.url.setOnClickListener(v -> {
             String url = cd.getUrl();
-            Intent i = BrowserActivity.newIntent(mContext, Uri.parse(url));
-            mContext.startActivity(i);
+            Intent i = BrowserActivity.newIntent(context, Uri.parse(url));
+            context.startActivity(i);
         });
         holder.message.setText(data.get(position).getMessage());
         holder.committer.setText("Committer: "+data.get(position).getCommitter());

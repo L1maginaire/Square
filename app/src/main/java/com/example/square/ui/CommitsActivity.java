@@ -27,19 +27,19 @@ import io.reactivex.schedulers.Schedulers;
 public class CommitsActivity extends AppCompatActivity {
     public static final String REPO_NAME = "repo_name";
     private StringProcessor processor = new StringProcessor();
-    private CompositeDisposable mCompositeDisposable = new CompositeDisposable();
-    private LinearLayoutManager mLinearLayoutManager;
-    private CommitAdapter mCommitAdapter;
-    private RecyclerView mRecyclerView;
+    private CompositeDisposable compositeDisposable = new CompositeDisposable();
+    private LinearLayoutManager linearLayoutManager;
+    private CommitAdapter commitAdapter;
+    private RecyclerView recyclerView;
     private ArrayList<CommitData> commitList = new ArrayList<>();
     ;
-    private GithubApi mGithubApi;
+    private GithubApi githubApi;
     private int pageNumber = 1;
 
     @Override
     protected void onStop() {
         super.onStop();
-        mCompositeDisposable.clear();
+        compositeDisposable.clear();
     }
 
     @Override
@@ -51,11 +51,11 @@ public class CommitsActivity extends AppCompatActivity {
 
         getSupportActionBar().setSubtitle(repoName);
 
-        mLinearLayoutManager = new LinearLayoutManager(this);
-        mLinearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        mRecyclerView = (RecyclerView) findViewById(R.id.commitsRecycler);
-        mRecyclerView.setLayoutManager(mLinearLayoutManager);
-        mRecyclerView.addOnScrollListener(new EndlessScrollImplementation(mLinearLayoutManager) {
+        linearLayoutManager = new LinearLayoutManager(this);
+        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        recyclerView = (RecyclerView) findViewById(R.id.commitsRecycler);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.addOnScrollListener(new EndlessScrollImplementation(linearLayoutManager) {
             @Override
             public void onLoadMore() {
                 subscribeForData(repoName);
@@ -65,22 +65,22 @@ public class CommitsActivity extends AppCompatActivity {
         SquareComponent component = DaggerSquareComponent.builder()
                 .contextModule(new ContextModule(this))
                 .build();
-        mGithubApi = component.getGithubService();
+        githubApi = component.getGithubService();
         subscribeForData(repoName);
     }
 
     private void setupAdapter() {
-        mCommitAdapter = new CommitAdapter(this, commitList);
-        mRecyclerView.setAdapter(mCommitAdapter);
+        commitAdapter = new CommitAdapter(this, commitList);
+        recyclerView.setAdapter(commitAdapter);
     }
 
     private void subscribeForData(String repoName) {
-        mCompositeDisposable.add(mGithubApi.getCommits(repoName, pageNumber)
+        compositeDisposable.add(githubApi.getCommits(repoName, pageNumber)
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(data -> {
                                 dataProcessing(data);
-                            mCommitAdapter.notifyItemRangeInserted(30 * pageNumber++, commitList.size());
+                            commitAdapter.notifyItemRangeInserted(30 * pageNumber++, commitList.size());
                         })
         );
     }

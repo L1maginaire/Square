@@ -18,19 +18,19 @@ import com.example.square.data.models.RepoData;
 import java.util.List;
 
 public class RepoAdapter extends RecyclerView.Adapter<RepoAdapter.Holder> {
-    private Context mContext;
+    private Context context;
     private List<RepoData> data;
-    private MainFragment.Callbacks mCallbacks;
+    private MainFragment.Callbacks callbacks;
 
     public RepoAdapter(Context context, List<RepoData> list, MainFragment.Callbacks callbacks) {
-        mContext = context;
+        this.context = context;
         data = list;
-        mCallbacks = callbacks;
+        this.callbacks = callbacks;
     }
 
     @Override
     public Holder onCreateViewHolder(ViewGroup parent, int viewType) {
-        LayoutInflater inflater = LayoutInflater.from(mContext);
+        LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.reporecycler_single_item, parent, false);
         return new Holder(view);
     }
@@ -43,7 +43,7 @@ public class RepoAdapter extends RecyclerView.Adapter<RepoAdapter.Holder> {
         holder.name.setText(data.get(position).getName());
         holder.stars.setText(String.valueOf(data.get(position).getStars()));
         holder.forks.setText(String.valueOf(data.get(position).getForks()));
-        holder.itemView.setOnClickListener(v -> mCallbacks.onRepoSelected(data.get(position).getName(),
+        holder.itemView.setOnClickListener(v -> callbacks.onRepoSelected(data.get(position).getName(),
                 data.get(position).getDescription()));
     }
 

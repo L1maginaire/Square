@@ -25,18 +25,18 @@ import io.reactivex.schedulers.Schedulers;
 
 public class ContributorsActivity extends AppCompatActivity {
     public static final String REPO_NAME = "repo_name";
-    private CompositeDisposable mCompositeDisposable = new CompositeDisposable();
-    private LinearLayoutManager mLinearLayoutManager;
-    private ContributorsAdapter mContributorsAdapter;
-    private RecyclerView mRecyclerView;
+    private CompositeDisposable compositeDisposable = new CompositeDisposable();
+    private LinearLayoutManager linearLayoutManager;
+    private ContributorsAdapter contributorsAdapter;
+    private RecyclerView recyclerView;
     private ArrayList<ContributorsData> contributorsList;
-    private GithubApi mGithubApi;
+    private GithubApi githubApi;
     private int pageNumber = 1;
 
     @Override
     protected void onStop() {
         super.onStop();
-        mCompositeDisposable.clear();
+        compositeDisposable.clear();
     }
 
     @Override
@@ -48,11 +48,11 @@ public class ContributorsActivity extends AppCompatActivity {
         getSupportActionBar().setSubtitle(repoName);
 
 
-        mLinearLayoutManager = new LinearLayoutManager(this);
-        mLinearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        mRecyclerView = (RecyclerView) findViewById(R.id.contributorsRecycler);
-        mRecyclerView.setLayoutManager(mLinearLayoutManager);
-        mRecyclerView.addOnScrollListener(new EndlessScrollImplementation(mLinearLayoutManager) {
+        linearLayoutManager = new LinearLayoutManager(this);
+        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        recyclerView = (RecyclerView) findViewById(R.id.contributorsRecycler);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.addOnScrollListener(new EndlessScrollImplementation(linearLayoutManager) {
             @Override
             public void onLoadMore() {
                 subscribeForData(repoName);
@@ -62,23 +62,23 @@ public class ContributorsActivity extends AppCompatActivity {
         SquareComponent component = DaggerSquareComponent.builder()
                 .contextModule(new ContextModule(this))
                 .build();
-        mGithubApi = component.getGithubService();
+        githubApi = component.getGithubService();
         setupAdapter(component.getPicasso());
         subscribeForData(repoName);
     }
 
     private void setupAdapter(Picasso picasso) {
-        mContributorsAdapter = new ContributorsAdapter(this, contributorsList, picasso);
-        mRecyclerView.setAdapter(mContributorsAdapter);
+        contributorsAdapter = new ContributorsAdapter(this, contributorsList, picasso);
+        recyclerView.setAdapter(contributorsAdapter);
     }
 
     private void subscribeForData(String repoName) {
-        mCompositeDisposable.add(mGithubApi.getContributors(repoName, pageNumber)
+        compositeDisposable.add(githubApi.getContributors(repoName, pageNumber)
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(data -> {
                             dataProcessing(data);
-                            mContributorsAdapter.notifyItemRangeInserted(30 * pageNumber++, contributorsList.size());
+                            contributorsAdapter.notifyItemRangeInserted(30 * pageNumber++, contributorsList.size());
                         })
         );
     }

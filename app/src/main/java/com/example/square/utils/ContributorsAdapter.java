@@ -22,19 +22,19 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 public class ContributorsAdapter extends RecyclerView.Adapter<ContributorsAdapter.Holder> {
-    private Context mContext;
+    private Context context;
     private List<ContributorsData> data;
     private Picasso picasso;
 
     public ContributorsAdapter (Context context, List<ContributorsData> list, Picasso picasso) {
-        mContext = context;
+        this.context = context;
         data = list;
         this.picasso = picasso;
     }
 
     @Override
     public Holder onCreateViewHolder(ViewGroup parent, int viewType) {
-        LayoutInflater inflater = LayoutInflater.from(mContext);
+        LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.contributors_recycler_single_item, parent, false);
         return new Holder(view);
     }
@@ -46,8 +46,8 @@ public class ContributorsAdapter extends RecyclerView.Adapter<ContributorsAdapte
         ContributorsData cd = data.get(position);
         holder.login.setText(cd.getLogin());
         holder.profileUrl.setOnClickListener(v -> {
-            Intent i = BrowserActivity.newIntent(mContext, Uri.parse(cd.getProfileUrl()));
-            mContext.startActivity(i);
+            Intent i = BrowserActivity.newIntent(context, Uri.parse(cd.getProfileUrl()));
+            context.startActivity(i);
         });
         holder.contributionsCount.setText(String.valueOf(cd.getContributions()));
         picasso.load(cd.getAvatarUrl()).into(holder.avatar);

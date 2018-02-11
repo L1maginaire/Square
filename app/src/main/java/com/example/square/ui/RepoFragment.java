@@ -1,11 +1,9 @@
 package com.example.square.ui;
 
 import android.app.Activity;
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,7 +23,7 @@ public class RepoFragment extends Fragment {
     private TextView description;
     private Button commits;
     private Button contributors;
-    private Callbacks mCallbacks;
+    private Callbacks callbacks;
 
 
     public interface Callbacks {
@@ -36,13 +34,13 @@ public class RepoFragment extends Fragment {
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-        mCallbacks = (Callbacks) activity;
+        callbacks = (Callbacks) activity;
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
-        mCallbacks = null;
+        callbacks = null;
     }
 
     public static RepoFragment newInstance(String title, String description) {
@@ -67,8 +65,8 @@ public class RepoFragment extends Fragment {
 
         title.setText(getArguments().getString(REPO_ID));
         description.setText(getArguments().getString(REPO_DESCRIPTION));
-        commits.setOnClickListener(v1 -> mCallbacks.onClickCommitButton(repoName));
-        contributors.setOnClickListener(v2 -> mCallbacks.onClickContributorsButton(repoName));
+        commits.setOnClickListener(v1 -> callbacks.onClickCommitButton(repoName));
+        contributors.setOnClickListener(v2 -> callbacks.onClickContributorsButton(repoName));
 
         return v;
     }
