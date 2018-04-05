@@ -1,4 +1,4 @@
-package com.example.square.utils;
+package com.example.square.adapters;
 
 /**
  * Created by l1maginaire on 1/27/18.
@@ -15,7 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.square.R;
-import com.example.square.mvp.model.ContributorsData;
+import com.example.square.mvp.model.main.ContributorsData;
 import com.example.square.ui.BrowserActivity;
 import com.squareup.picasso.Picasso;
 

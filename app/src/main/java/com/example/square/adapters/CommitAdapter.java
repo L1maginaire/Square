@@ -1,4 +1,4 @@
-package com.example.square.utils;
+package com.example.square.adapters;
 
 /**
  * Created by l1maginaire on 1/27/18.
@@ -15,7 +15,7 @@ import android.widget.TextView;
 
 import com.example.square.ui.BrowserActivity;
 import com.example.square.R;
-import com.example.square.mvp.model.CommitData;
+import com.example.square.mvp.model.main.CommitData;
 
 import java.util.List;
 
@@ -73,6 +73,7 @@ public class CommitAdapter extends RecyclerView.Adapter<CommitAdapter.Holder> {
     }
 
     class Holder extends RecyclerView.ViewHolder{
+        @BindView
         private TextView sha;
         private TextView author;
         private TextView date;
@@ -82,7 +83,7 @@ public class CommitAdapter extends RecyclerView.Adapter<CommitAdapter.Holder> {
 
         public Holder(View itemView) {
             super(itemView);
-            sha = (TextView) itemView.findViewById(R.id.comSha);
+            sha = (TextView) itemView.findViewById();
             author = (TextView) itemView.findViewById(R.id.comAuthor);
             date = (TextView) itemView.findViewById(R.id.comDate);
             url = (TextView) itemView.findViewById(R.id.comUrl);

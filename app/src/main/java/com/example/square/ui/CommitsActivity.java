@@ -7,12 +7,12 @@ import android.support.v7.widget.RecyclerView;
 
 import com.example.square.R;
 import com.example.square.mvp.model.commits.Commit;
-import com.example.square.mvp.model.CommitData;
+import com.example.square.mvp.model.main.CommitData;
 import com.example.square.mvp.model.commits.CommitDetails;
 import com.example.square.di.components.DaggerSquareComponent;
 import com.example.square.di.components.SquareComponent;
 import com.example.square.di.modules.ContextModule;
-import com.example.square.utils.CommitAdapter;
+import com.example.square.adapters.CommitAdapter;
 import com.example.square.utils.EndlessScrollImplementation;
 import com.example.square.interfaces.GithubApi;
 import com.example.square.utils.StringProcessor;

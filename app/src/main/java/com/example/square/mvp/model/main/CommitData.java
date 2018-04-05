@@ -1,4 +1,4 @@
-package com.example.square.mvp.model;
+package com.example.square.mvp.model.main;
 
 /**
  * Created by l1maginaire on 1/27/18.

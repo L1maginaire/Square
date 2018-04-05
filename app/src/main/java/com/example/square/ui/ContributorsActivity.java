@@ -6,12 +6,12 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.example.square.R;
-import com.example.square.mvp.model.ContributorsData;
+import com.example.square.mvp.model.main.ContributorsData;
 import com.example.square.mvp.model.contributors.Contributor;
 import com.example.square.di.components.DaggerSquareComponent;
 import com.example.square.di.components.SquareComponent;
 import com.example.square.di.modules.ContextModule;
-import com.example.square.utils.ContributorsAdapter;
+import com.example.square.adapters.ContributorsAdapter;
 import com.example.square.utils.EndlessScrollImplementation;
 import com.example.square.interfaces.GithubApi;
 import com.squareup.picasso.Picasso;

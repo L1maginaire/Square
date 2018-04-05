@@ -1,6 +1,4 @@
-package com.example.square.mvp.model;
-
-import java.io.Serializable;
+package com.example.square.mvp.model.main;
 
 /**
  * Created by l1maginaire on 1/26/18.

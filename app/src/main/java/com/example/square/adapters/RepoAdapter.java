@@ -1,4 +1,4 @@
-package com.example.square.utils;
+package com.example.square.adapters;
 
 /*
  * Created by l1maginaire on 1/25/18.
@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import com.example.square.ui.MainFragment;
 import com.example.square.R;
-import com.example.square.mvp.model.RepoData;
+import com.example.square.mvp.model.main.RepoData;
 
 import java.util.List;
 

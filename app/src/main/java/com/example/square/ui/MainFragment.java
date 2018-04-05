@@ -11,12 +11,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.example.square.R;
-import com.example.square.mvp.model.RepoData;
+import com.example.square.mvp.model.main.RepoData;
 import com.example.square.mvp.model.repos.Repo;
 import com.example.square.di.components.DaggerSquareComponent;
 import com.example.square.di.components.SquareComponent;
 import com.example.square.di.modules.ContextModule;
-import com.example.square.utils.RepoAdapter;
+import com.example.square.adapters.RepoAdapter;
 import com.example.square.utils.EndlessScrollImplementation;
 import com.example.square.interfaces.GithubApi;
 
