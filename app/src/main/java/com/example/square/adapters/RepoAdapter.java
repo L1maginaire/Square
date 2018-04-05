@@ -1,8 +1,8 @@
 package com.example.square.adapters;
 
-/*
+/**
  * Created by l1maginaire on 1/25/18.
-*/
+ */
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -11,11 +11,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.square.ui.MainFragment;
 import com.example.square.R;
 import com.example.square.mvp.model.main.RepoData;
+import com.example.square.ui.MainFragment;
 
 import java.util.List;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class RepoAdapter extends RecyclerView.Adapter<RepoAdapter.Holder> {
     private Context context;
@@ -52,16 +55,17 @@ public class RepoAdapter extends RecyclerView.Adapter<RepoAdapter.Holder> {
         return data.size();
     }
 
-    class Holder extends RecyclerView.ViewHolder{
-        private TextView name;
-        private TextView stars;
-        private TextView forks;
+    class Holder extends RecyclerView.ViewHolder {
+        @BindView(R.id.name)
+        TextView name;
+        @BindView(R.id.starsCount)
+        TextView stars;
+        @BindView(R.id.forksCount)
+        TextView forks;
 
         public Holder(View itemView) {
             super(itemView);
-            name = (TextView) itemView.findViewById(R.id.name);
-            stars = (TextView) itemView.findViewById(R.id.starsCount);
-            forks = (TextView) itemView.findViewById(R.id.forksCount);
+            ButterKnife.bind(this, itemView);
         }
     }
 }

@@ -19,10 +19,13 @@ import com.example.square.mvp.model.main.CommitData;
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class CommitAdapter extends RecyclerView.Adapter<CommitAdapter.Holder> {
     private Context context;
     private List<CommitData> data;
-    private boolean areHidden = true;
+    private boolean areHidden = true; //todo wtf?
 
     public CommitAdapter (Context context, List<CommitData> list) {
         this.context = context;
@@ -58,11 +61,8 @@ public class CommitAdapter extends RecyclerView.Adapter<CommitAdapter.Holder> {
         holder.sha.setText("SHA: " + cd.getSha());
         holder.author.setText("Author: " +cd.getAuthor());
         holder.date.setText(cd.getDate());
-        holder.url.setOnClickListener(v -> {
-            String url = cd.getUrl();
-            Intent i = BrowserActivity.newIntent(context, Uri.parse(url));
-            context.startActivity(i);
-        });
+        holder.url.setOnClickListener(v ->
+                context.startActivity(BrowserActivity.newIntent(context, Uri.parse(cd.getUrl()))));
         holder.message.setText(data.get(position).getMessage());
         holder.committer.setText("Committer: "+data.get(position).getCommitter());
     }
@@ -73,22 +73,22 @@ public class CommitAdapter extends RecyclerView.Adapter<CommitAdapter.Holder> {
     }
 
     class Holder extends RecyclerView.ViewHolder{
-        @BindView
-        private TextView sha;
-        private TextView author;
-        private TextView date;
-        private TextView url;
-        private TextView message;
-        private TextView committer;
+        @BindView(R.id.comSha)
+        TextView sha;
+        @BindView(R.id.comAuthor)
+        TextView author;
+        @BindView(R.id.comDate)
+        TextView date;
+        @BindView(R.id.comUrl)
+        TextView url;
+        @BindView(R.id.comMessage)
+        TextView message;
+        @BindView(R.id.comCommitter)
+        TextView committer;
 
         public Holder(View itemView) {
             super(itemView);
-            sha = (TextView) itemView.findViewById();
-            author = (TextView) itemView.findViewById(R.id.comAuthor);
-            date = (TextView) itemView.findViewById(R.id.comDate);
-            url = (TextView) itemView.findViewById(R.id.comUrl);
-            message = (TextView) itemView.findViewById(R.id.comMessage);
-            committer = (TextView) itemView.findViewById(R.id.comCommitter);
+            ButterKnife.bind(this, itemView);
         }
     }
 }

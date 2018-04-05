@@ -21,12 +21,15 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class ContributorsAdapter extends RecyclerView.Adapter<ContributorsAdapter.Holder> {
     private Context context;
     private List<ContributorsData> data;
     private Picasso picasso;
 
-    public ContributorsAdapter (Context context, List<ContributorsData> list, Picasso picasso) {
+    public ContributorsAdapter(Context context, List<ContributorsData> list, Picasso picasso) {
         this.context = context;
         data = list;
         this.picasso = picasso;
@@ -58,18 +61,19 @@ public class ContributorsAdapter extends RecyclerView.Adapter<ContributorsAdapte
         return data.size();
     }
 
-    class Holder extends RecyclerView.ViewHolder{
-        private TextView login;
-        private TextView contributionsCount;
-        private TextView profileUrl;
-        private ImageView avatar;
+    class Holder extends RecyclerView.ViewHolder {
+        @BindView(R.id.conLogin)
+        TextView login;
+        @BindView(R.id.conContributionsCount)
+        TextView contributionsCount;
+        @BindView(R.id.conProfileUrl)
+        TextView profileUrl;
+        @BindView(R.id.avatar)
+        ImageView avatar;
 
         public Holder(View itemView) {
             super(itemView);
-            login = (TextView) itemView.findViewById(R.id.conLogin);
-            contributionsCount = (TextView) itemView.findViewById(R.id.conContributionsCount);
-            profileUrl = (TextView) itemView.findViewById(R.id.conProfileUrl);
-            avatar = (ImageView) itemView.findViewById(R.id.avatar);
+            ButterKnife.bind(this, itemView);
         }
     }
 }
