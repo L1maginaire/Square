@@ -15,7 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.square.R;
-import com.example.square.data.models.ContributorsData;
+import com.example.square.mvp.model.ContributorsData;
 import com.example.square.ui.BrowserActivity;
 import com.squareup.picasso.Picasso;
 

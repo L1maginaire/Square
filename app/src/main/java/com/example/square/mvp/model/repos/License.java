@@ -1,4 +1,4 @@
-package com.example.square.data.models.repomodel;
+package com.example.square.mvp.model.repos;
 
 /**
  * Created by l1maginaire on 1/25/18.

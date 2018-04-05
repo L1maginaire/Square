@@ -1,4 +1,4 @@
-package com.example.square.data.models;
+package com.example.square.mvp.model;
 
 import java.io.Serializable;
 

@@ -6,8 +6,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.example.square.R;
-import com.example.square.data.models.ContributorsData;
-import com.example.square.data.models.contributormodel.Contributor;
+import com.example.square.mvp.model.ContributorsData;
+import com.example.square.mvp.model.contributors.Contributor;
 import com.example.square.di.components.DaggerSquareComponent;
 import com.example.square.di.components.SquareComponent;
 import com.example.square.di.modules.ContextModule;

@@ -1,4 +1,4 @@
-package com.example.square.data.models.commitmodel;
+package com.example.square.mvp.model.commits;
 
 /**
  * Created by l1maginaire on 1/25/18.
@@ -7,7 +7,7 @@ package com.example.square.data.models.commitmodel;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Committer {
+public class Author {
 
     @SerializedName("name")
     @Expose

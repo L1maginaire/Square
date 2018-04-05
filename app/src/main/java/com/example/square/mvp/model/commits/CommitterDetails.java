@@ -1,4 +1,4 @@
-package com.example.square.data.models.contributormodel;
+package com.example.square.mvp.model.commits;
 
 /**
  * Created by l1maginaire on 1/25/18.
@@ -7,7 +7,7 @@ package com.example.square.data.models.contributormodel;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Contributor {
+public class CommitterDetails {
 
     @SerializedName("login")
     @Expose
@@ -60,9 +60,6 @@ public class Contributor {
     @SerializedName("site_admin")
     @Expose
     private Boolean siteAdmin;
-    @SerializedName("contributions")
-    @Expose
-    private Integer contributions;
 
     public String getLogin() {
         return login;
@@ -198,13 +195,5 @@ public class Contributor {
 
     public void setSiteAdmin(Boolean siteAdmin) {
         this.siteAdmin = siteAdmin;
-    }
-
-    public Integer getContributions() {
-        return contributions;
-    }
-
-    public void setContributions(Integer contributions) {
-        this.contributions = contributions;
     }
 }

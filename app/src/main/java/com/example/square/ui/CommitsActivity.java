@@ -6,9 +6,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.example.square.R;
-import com.example.square.data.models.commitmodel.Commit;
-import com.example.square.data.models.CommitData;
-import com.example.square.data.models.commitmodel.CommitDetails;
+import com.example.square.mvp.model.commits.Commit;
+import com.example.square.mvp.model.CommitData;
+import com.example.square.mvp.model.commits.CommitDetails;
 import com.example.square.di.components.DaggerSquareComponent;
 import com.example.square.di.components.SquareComponent;
 import com.example.square.di.modules.ContextModule;

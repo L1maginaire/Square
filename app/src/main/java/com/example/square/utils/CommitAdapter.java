@@ -15,7 +15,7 @@ import android.widget.TextView;
 
 import com.example.square.ui.BrowserActivity;
 import com.example.square.R;
-import com.example.square.data.models.CommitData;
+import com.example.square.mvp.model.CommitData;
 
 import java.util.List;
 

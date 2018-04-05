@@ -1,4 +1,4 @@
-package com.example.square.data.models;
+package com.example.square.mvp.model;
 
 /**
  * Created by l1maginaire on 1/27/18.
