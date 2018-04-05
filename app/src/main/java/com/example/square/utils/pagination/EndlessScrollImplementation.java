@@ -1,7 +1,7 @@
-package com.example.square.utils;
+package com.example.square.utils.pagination;
 
 /**
- * Created by l1maginaire on 1/27/18.
+ * Created by l1maginaire on 4/5/18.
  */
 
 import android.support.v7.widget.LinearLayoutManager;

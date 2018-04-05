@@ -12,8 +12,7 @@ import com.example.square.di.components.DaggerSquareComponent;
 import com.example.square.di.components.SquareComponent;
 import com.example.square.di.modules.ContextModule;
 import com.example.square.adapters.ContributorsAdapter;
-import com.example.square.utils.EndlessScrollImplementation;
-import com.example.square.interfaces.GithubApi;
+import com.example.square.api.GithubApi;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;

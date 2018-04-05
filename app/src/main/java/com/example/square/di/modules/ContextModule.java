@@ -6,7 +6,7 @@ package com.example.square.di.modules;
 
 import android.content.Context;
 
-import com.example.square.interfaces.ApplicationScope;
+import com.example.square.di.scope.ApplicationScope;
 
 import javax.inject.Named;
 

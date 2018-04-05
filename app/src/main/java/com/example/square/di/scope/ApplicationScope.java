@@ -1,4 +1,4 @@
-package com.example.square.interfaces;
+package com.example.square.di.scope;
 
 /**
  * Created by l1maginaire on 1/25/18.

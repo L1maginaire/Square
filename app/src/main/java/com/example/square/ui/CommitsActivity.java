@@ -13,9 +13,9 @@ import com.example.square.di.components.DaggerSquareComponent;
 import com.example.square.di.components.SquareComponent;
 import com.example.square.di.modules.ContextModule;
 import com.example.square.adapters.CommitAdapter;
-import com.example.square.utils.EndlessScrollImplementation;
-import com.example.square.interfaces.GithubApi;
+import com.example.square.api.GithubApi;
 import com.example.square.utils.StringProcessor;
+import com.example.square.utils.pagination.EndlessScrollImplementation;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +32,6 @@ public class CommitsActivity extends AppCompatActivity {
     private CommitAdapter commitAdapter;
     private RecyclerView recyclerView;
     private ArrayList<CommitData> commitList = new ArrayList<>();
-    ;
     private GithubApi githubApi;
     private int pageNumber = 1;
 
@@ -48,8 +47,8 @@ public class CommitsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_commits);
 
         String repoName = getIntent().getStringExtra(REPO_NAME);
-
-        getSupportActionBar().setSubtitle(repoName);
+        if (repoName != null)
+            getSupportActionBar().setSubtitle(repoName);
 
         linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -76,19 +75,19 @@ public class CommitsActivity extends AppCompatActivity {
 
     private void subscribeForData(String repoName) {
         compositeDisposable.add(githubApi.getCommits(repoName, pageNumber)
-                        .subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe(data -> {
-                                dataProcessing(data);
-                            commitAdapter.notifyItemRangeInserted(30 * pageNumber++, commitList.size());
-                        })
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(data -> {
+                    dataProcessing(data);
+                    commitAdapter.notifyItemRangeInserted(30 * pageNumber++, commitList.size());
+                })
         );
     }
 
-    private void dataProcessing(List<Commit> commits){
+    private void dataProcessing(List<Commit> commits) {
         for (Commit commit : commits) {
             CommitDetails details = commit.getCommit();
-            CommitData commitData  = new CommitData();
+            CommitData commitData = new CommitData();
             commitData.setAuthor(processor.nameFormat(details.getAuthor().getName()));
             commitData.setCommitter(processor.nameFormat(details.getCommitter().getName()));
             commitData.setDate(processor.dateFormat(details.getAuthor().getDate()));

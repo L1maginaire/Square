@@ -12,6 +12,9 @@ import android.widget.TextView;
 
 import com.example.square.R;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * Created by l1maginaire on 1/26/18.
  */
@@ -19,10 +22,15 @@ import com.example.square.R;
 public class RepoFragment extends Fragment {
     public static final String REPO_ID = "repo_id";
     public static final String REPO_DESCRIPTION = "repo_description";
-    private TextView title;
-    private TextView description;
-    private Button commits;
-    private Button contributors;
+
+    @BindView(R.id.repoTitle)
+    TextView title;
+    @BindView(R.id.repoDescription)
+    TextView description;
+    @BindView(R.id.commits)
+    Button commits;
+    @BindView(R.id.contributors)
+    Button contributors;
     private Callbacks callbacks;
 
 
@@ -56,12 +64,8 @@ public class RepoFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_single_repo, container, false);
+        ButterKnife.bind(this, v);
         final String repoName = getArguments().getString(REPO_ID);
-        
-        title = (TextView) v.findViewById(R.id.repoTitle);
-        description = (TextView) v.findViewById(R.id.repoDescription);
-        commits = (Button) v.findViewById(R.id.commits);
-        contributors = (Button) v.findViewById(R.id.contributors);
 
         title.setText(getArguments().getString(REPO_ID));
         description.setText(getArguments().getString(REPO_DESCRIPTION));
